@@ -25,14 +25,40 @@ const DescriptionTitle = styled(Text, {
   color: "rgb(116, 79, 79)",
 });
 
+const Tag =  styled(Text, {
+  fontSize: 13,
+  fontFamily: "RedHatText_400Regular",
+  color: "rgba(26, 26, 26, 1)",
+  backgroundColor: "rgba(242, 232, 232, 1)",
+  alignSelf: 'flex-start',
+  paddingHorizontal: 10,
+  paddingVertical: 2,
+  borderRadius: 12
+});
+
+const MenImagePlaceholder = React.memo(function () {
+  return (
+    <Image
+      source={require("@/assets/images/default-image-men.png")}
+      style={{ width: 100, height: 100, borderRadius: 100 }}
+    />
+  );
+});
+
+const WomenImagePlaceholder = React.memo(function () {
+  return (
+    <Image
+      source={require("@/assets/images/default-image-women.png")}
+      style={{ width: 100, height: 100, borderRadius: 100 }}
+    />
+  );
+});
+
 export const ProgramCard = React.memo(function () {
   return (
     <OuterView>
       <YStack flex={1} justifyContent="center">
-        <Image
-          source={require("@/assets/images/default-image-men.png")}
-          style={{ width: 100, height: 100, borderRadius: 100 }}
-        />
+        <WomenImagePlaceholder />
       </YStack>
       <YStack flex={3} gap={5}>
         <MentorTitle>Edith Brou-Bleu</MentorTitle>
@@ -41,6 +67,7 @@ export const ProgramCard = React.memo(function () {
           Organisez votre travail et gérez vos priorités pour atteindre vos
           objectifs sans vous épuiser
         </DescriptionTitle>
+        <Tag>Productivité</Tag>
       </YStack>
     </OuterView>
   );
