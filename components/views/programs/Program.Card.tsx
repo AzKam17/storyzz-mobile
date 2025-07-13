@@ -1,24 +1,26 @@
+import { Image } from "expo-image";
 import React from "react";
-import { styled, Text, View, XStack, YStack } from "tamagui";
+import { styled, Text, XStack, YStack } from "tamagui";
 
 const OuterView = styled(XStack, {
+  gap: 30,
   padding: 16,
   borderRadius: 12,
   backgroundColor: "white",
 });
 
 const MentorTitle = styled(Text, {
-  fontSize: 18,
+  fontSize: 16,
   fontFamily: "RedHatText_600SemiBold",
   color: "rgba(153, 77, 77, 1)",
 });
 const ProgramTitle = styled(Text, {
-  fontSize: 22,
+  fontSize: 18,
   fontFamily: "RedHatDisplay_900Black",
   color: "rgba(0, 0, 0, 1)",
 });
 const DescriptionTitle = styled(Text, {
-  fontSize: 16,
+  fontSize: 13,
   fontFamily: "RedHatText_400Regular",
   color: "rgb(116, 79, 79)",
 });
@@ -26,7 +28,12 @@ const DescriptionTitle = styled(Text, {
 export const ProgramCard = React.memo(function () {
   return (
     <OuterView>
-      <View flex={1}></View>
+      <YStack flex={1} justifyContent="center">
+        <Image
+          source={require("@/assets/images/default-image-men.png")}
+          style={{ width: 100, height: 100, borderRadius: 100 }}
+        />
+      </YStack>
       <YStack flex={3} gap={5}>
         <MentorTitle>Edith Brou-Bleu</MentorTitle>
         <ProgramTitle>Maîtriser sa Productivité Personnelle</ProgramTitle>
