@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { PillButtonList } from "@/components/buttons";
 import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
+import { ProgramCard } from "@/components/views/programs";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -12,6 +13,7 @@ export default function HomeScreen() {
     <Page>
       <SearchBarInput />
       <PillButtonList />
+      <ProgramCard />
     </Page>
   );
 }

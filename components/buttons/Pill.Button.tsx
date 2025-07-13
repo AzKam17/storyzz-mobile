@@ -10,6 +10,7 @@ type PillProps = {
 
 // Styled wrapper to make it look like a pill
 const PillContainer = styled(View, {
+  height: 30,
   borderRadius: 9999,
   paddingHorizontal: 12,
   paddingVertical: 6,
