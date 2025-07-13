@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -8,6 +9,7 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   return (
     <Page>
+      <SearchBarInput />
     </Page>
   );
 }

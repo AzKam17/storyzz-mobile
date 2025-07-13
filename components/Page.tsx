@@ -5,7 +5,7 @@ import { styled, YStack } from "tamagui";
 const CPage = styled(YStack, {
   flex: 1,
   paddingHorizontal: 10,
-  backgroundColor: "white",
+  backgroundColor: "rgba(247, 243, 238, 1)",
 });
 
 export const Page = React.memo(function ({
