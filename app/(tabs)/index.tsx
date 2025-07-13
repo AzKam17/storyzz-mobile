@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 
+import { PillButtonList } from "@/components/buttons";
 import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
 import React from "react";
@@ -10,6 +11,7 @@ export default function HomeScreen() {
   return (
     <Page>
       <SearchBarInput />
+      <PillButtonList />
     </Page>
   );
 }

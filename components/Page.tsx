@@ -4,6 +4,7 @@ import { styled, YStack } from "tamagui";
 
 const CPage = styled(YStack, {
   flex: 1,
+  gap: 10,
   paddingHorizontal: 10,
   backgroundColor: "rgba(247, 243, 238, 1)",
 });
