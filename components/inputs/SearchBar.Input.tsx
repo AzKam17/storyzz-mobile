@@ -33,7 +33,7 @@ export const SearchBarInput = React.memo(function (props: TextInputProps) {
       paddingHorizontal={15}
       paddingVertical={10}
       borderColor={viewColor}
-      borderWidth={focused ? 1.5 : 0.7}
+      borderWidth={1.5}
     >
       <Fontisto name="zoom" size={24} color={iconColor} />
       <View flex={1}>
