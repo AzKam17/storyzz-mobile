@@ -1,10 +1,11 @@
-import Feather from '@expo/vector-icons/Feather';
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
+import AccountSvg from '@/assets/svg/AccountSvg';
+import MentorSvg from '@/assets/svg/MentorSvg';
 import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
@@ -31,14 +32,21 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Accueil',
-          tabBarIcon: ({ color }) => <Feather name="tool" size={24} color={color} />,
+          tabBarIcon: ({ color }) => <MaterialCommunityIcons name="home-outline" size={24} color="black" />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="mentor"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Mentor',
+          tabBarIcon: ({ color }) => <MentorSvg  />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: 'Profil',
+          tabBarIcon: ({ color }) => <AccountSvg />,
         }}
       />
     </Tabs>
