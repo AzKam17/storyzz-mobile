@@ -3,6 +3,7 @@ import {
 } from "@expo-google-fonts/red-hat-display";
 import {
   RedHatText_400Regular,
+  RedHatText_500Medium,
   RedHatText_600SemiBold,
 } from "@expo-google-fonts/red-hat-text";
 import {
@@ -29,7 +30,7 @@ export default function RootLayout() {
     RedHatText_400Regular,
     RedHatText_600SemiBold,
     RedHatDisplay_900Black
-,
+,RedHatText_500Medium,
   });
 
   useEffect(() => {
