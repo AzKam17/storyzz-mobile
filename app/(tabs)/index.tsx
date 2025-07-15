@@ -4,6 +4,7 @@ import { PillButtonList } from "@/components/buttons";
 import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
 import { PageTitle } from "@/components/texts/PageTitle";
+import { NoContentSearchMisc } from "@/components/views/misc";
 import { ProgramCard } from "@/components/views/programs";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
@@ -47,16 +48,55 @@ const programs = [
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   const [searchValue, setSearchValue] = React.useState<string>("");
+  const [tagList, setTagList] = React.useState<string[]>([]);
+
+
+
+  const listValues = React.useMemo(
+    function () {
+      const e = searchValue.toLowerCase();
+      let filteredPrograms = programs;
+
+      // Apply search filter
+      if (e) {
+        filteredPrograms = filteredPrograms.filter(
+          (program) =>
+            program.mentorName.toLowerCase().includes(e) ||
+            program.programName.toLowerCase().includes(e) ||
+            program.programDescription.toLowerCase().includes(e) ||
+            program.tag.toLowerCase().includes(e)
+        );
+      }
+
+      // Apply tag filter
+      if (tagList.length > 0) {
+        filteredPrograms = filteredPrograms.filter((program) =>
+          tagList.includes(program.tag)
+        );
+      }
+
+      console.log(filteredPrograms)
+      return filteredPrograms;
+    },
+    [searchValue, tagList]
+  );
+
+  const clearSearch = React.useCallback(function () {
+    setSearchValue("");
+    setTagList([]);
+  }, []);
+
   return (
     <Page hasBottom={true}>
       <PageTitle>Programes</PageTitle>
       <SearchBarInput value={searchValue} onChangeText={setSearchValue} />
-      <PillButtonList />
+      <PillButtonList values={tagList} setValuesList={setTagList} />
       <FlashList
-        data={programs}
+        data={listValues}
         renderItem={({ item }) => <ProgramCard {...item} />}
+        ListEmptyComponent={<NoContentSearchMisc onPress={clearSearch} />}
         estimatedItemSize={300}
-        contentContainerStyle={{ padding: 0 }}
+        contentContainerStyle={{ paddingBottom: 100 }}
         showsVerticalScrollIndicator={false}
       />
     </Page>

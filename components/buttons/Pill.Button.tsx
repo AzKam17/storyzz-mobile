@@ -4,7 +4,8 @@ import { styled, Text, View } from "tamagui";
 
 type PillProps = {
   label: string;
-  onPress?: () => void;
+  onPress?: (value: string) => void;
+  isActive?: (value: string) => boolean;
   textColor?: string;
 };
 
@@ -38,22 +39,26 @@ const inactiveBg = "rgba(220, 252, 231, 1)";
 const activeTextColor = "rgba(255, 255, 255, 1)";
 const inactiveTextColor = "rgba(28, 13, 13, 1)";
 
-export const Pill = ({ label, onPress }: PillProps) => {
-  const [isActive, setIsActive] = React.useState(false);
+export const Pill = ({ label, onPress, isActive }: PillProps) => {
+
+  const isPillActive = React.useMemo(function(){
+    if(!isActive) return false
+
+    return isActive(label)
+  }, [label, onPress, isActive])
 
   const handlePress = React.useCallback(() => {
-    setIsActive(!isActive);
-    onPress?.();
+    onPress?.(label);
   }, [onPress, label, isActive]);
 
   const backgroundColor = React.useMemo(
-    () => (isActive ? activeBg : inactiveBg),
+    () => (isPillActive ? activeBg : inactiveBg),
     [isActive]
   );
 
   const textColor = React.useMemo(
-    () => (isActive ? activeTextColor : inactiveTextColor),
-    [isActive]
+    () => (isPillActive ? activeTextColor : inactiveTextColor),
+    [isPillActive]
   );
 
   return (

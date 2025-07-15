@@ -15,7 +15,11 @@ const SubTitle = styled(Text, {
   fontFamily: "RedHatText_400Regular",
 });
 
-export const NoContentSearchMisc = React.memo(function () {
+type Props ={
+  onPress: () => void
+}
+
+export const NoContentSearchMisc = React.memo(function (props: Props) {
   return (
     <YStack flex={1} paddingTop={60}>
       <View alignItems="center" gap={10}>
@@ -50,7 +54,7 @@ export const NoContentSearchMisc = React.memo(function () {
         </Svg>
         <Title>Aucun résultat trouvé</Title>
         <SubTitle>Essayez avec d'autres mots-clés ou explorez nos catégories pour découvrir nos accompagnements.</SubTitle>
-        <Pill label="Réinitialiser la recherche" />
+        <Pill label="Réinitialiser la recherche" onPress={props.onPress} />
       </View>
     </YStack>
   );
