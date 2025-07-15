@@ -4,16 +4,58 @@ import { PillButtonList } from "@/components/buttons";
 import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
 import { ProgramCard } from "@/components/views/programs";
+import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+
+const programs = [
+  {
+    mentorGender: "women",
+    mentorName: "Edith Brou-Bleu",
+    programName: "Maîtriser sa Productivité Personnelle",
+    programDescription:
+      "Organisez votre travail et gérez vos priorités pour atteindre vos objectifs sans vous épuiser",
+    tag: "Productivité",
+  },
+  {
+    mentorGender: "men",
+    mentorName: "Didier Drogba",
+    programName: "Leadership : Incarner le Changement",
+    programDescription:
+      "Apprenez à mobiliser et à inspirer vos équipes pour naviguer avec succès.",
+    tag: "Leadership",
+  },
+  {
+    mentorGender: "women",
+    mentorName: "Janine Kacou Diagou",
+    programName: "La Boîte à Outils du Manager Efficace",
+    programDescription:
+      "Maîtrisez les techniques essentielles pour déléguer, motiver et donner du feedback.",
+    tag: "Management",
+  },
+  {
+    mentorGender: "men",
+    mentorName: "Tidjane Thiam",
+    programName: "Finance pour Dirigeants et Managers",
+    programDescription:
+      "Prenez des décisions éclairées en maîtrisant les indicateurs financiers clés.",
+    tag: "Finance",
+  },
+];
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   return (
-    <Page>
+    <Page hasBottom={true}>
       <SearchBarInput />
       <PillButtonList />
-      <ProgramCard />
+      <FlashList 
+        data={programs} 
+        renderItem={({item}) => <ProgramCard {...item} />} 
+        estimatedItemSize={300}
+        contentContainerStyle={{ padding: 0 }}
+        showsVerticalScrollIndicator={false}
+      />
     </Page>
   );
 }

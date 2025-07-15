@@ -7,6 +7,7 @@ const OuterView = styled(XStack, {
   padding: 16,
   borderRadius: 12,
   backgroundColor: "white",
+  marginBottom: 15
 });
 
 const MentorTitle = styled(Text, {
@@ -25,15 +26,15 @@ const DescriptionTitle = styled(Text, {
   color: "rgb(116, 79, 79)",
 });
 
-const Tag =  styled(Text, {
+const Tag = styled(Text, {
   fontSize: 13,
   fontFamily: "RedHatText_400Regular",
   color: "rgba(26, 26, 26, 1)",
   backgroundColor: "rgba(242, 232, 232, 1)",
-  alignSelf: 'flex-start',
+  alignSelf: "flex-start",
   paddingHorizontal: 10,
   paddingVertical: 2,
-  borderRadius: 12
+  borderRadius: 12,
 });
 
 const MenImagePlaceholder = React.memo(function () {
@@ -54,20 +55,31 @@ const WomenImagePlaceholder = React.memo(function () {
   );
 });
 
-export const ProgramCard = React.memo(function () {
+type Props = {
+  mentorGender: string;
+  mentorName: string;
+  programName: string;
+  programDescription: string;
+  tag: string;
+};
+
+export const ProgramCard = React.memo(function (props: Props) {
+  const { mentorGender, mentorName, programName, programDescription, tag } =
+    props;
   return (
     <OuterView>
       <YStack flex={1} justifyContent="center">
-        <WomenImagePlaceholder />
+        {mentorGender === "men" ? (
+          <MenImagePlaceholder />
+        ) : (
+          <WomenImagePlaceholder />
+        )}
       </YStack>
       <YStack flex={3} gap={5}>
-        <MentorTitle>Edith Brou-Bleu</MentorTitle>
-        <ProgramTitle>Maîtriser sa Productivité Personnelle</ProgramTitle>
-        <DescriptionTitle>
-          Organisez votre travail et gérez vos priorités pour atteindre vos
-          objectifs sans vous épuiser
-        </DescriptionTitle>
-        <Tag>Productivité</Tag>
+        <MentorTitle>{mentorName}</MentorTitle>
+        <ProgramTitle>{programName}</ProgramTitle>
+        <DescriptionTitle>{programDescription}</DescriptionTitle>
+        <Tag>{tag}</Tag>
       </YStack>
     </OuterView>
   );
