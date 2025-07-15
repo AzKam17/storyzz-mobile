@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 import { PillButtonList } from "@/components/buttons";
 import { SearchBarInput } from "@/components/inputs";
 import { Page } from "@/components/Page";
+import { PageTitle } from "@/components/texts/PageTitle";
 import { ProgramCard } from "@/components/views/programs";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
@@ -47,6 +48,9 @@ export default function HomeScreen() {
   const insets = useSafeAreaInsets();
   return (
     <Page hasBottom={true}>
+      <PageTitle>
+        Programes
+      </PageTitle>
       <SearchBarInput />
       <PillButtonList />
       <FlashList 

@@ -1,10 +1,9 @@
-import {
-  RedHatDisplay_900Black
-} from "@expo-google-fonts/red-hat-display";
+import { RedHatDisplay_900Black } from "@expo-google-fonts/red-hat-display";
 import {
   RedHatText_400Regular,
   RedHatText_500Medium,
   RedHatText_600SemiBold,
+  RedHatText_700Bold,
 } from "@expo-google-fonts/red-hat-text";
 import {
   DarkTheme,
@@ -29,8 +28,9 @@ export default function RootLayout() {
   const [loaded, error] = useFonts({
     RedHatText_400Regular,
     RedHatText_600SemiBold,
-    RedHatDisplay_900Black
-,RedHatText_500Medium,
+    RedHatDisplay_900Black,
+    RedHatText_500Medium,
+    RedHatText_700Bold,
   });
 
   useEffect(() => {
