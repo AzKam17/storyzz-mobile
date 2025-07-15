@@ -46,16 +46,15 @@ const programs = [
 
 export default function HomeScreen() {
   const insets = useSafeAreaInsets();
+  const [searchValue, setSearchValue] = React.useState<string>("");
   return (
     <Page hasBottom={true}>
-      <PageTitle>
-        Programes
-      </PageTitle>
-      <SearchBarInput />
+      <PageTitle>Programes</PageTitle>
+      <SearchBarInput value={searchValue} onChangeText={setSearchValue} />
       <PillButtonList />
-      <FlashList 
-        data={programs} 
-        renderItem={({item}) => <ProgramCard {...item} />} 
+      <FlashList
+        data={programs}
+        renderItem={({ item }) => <ProgramCard {...item} />}
         estimatedItemSize={300}
         contentContainerStyle={{ padding: 0 }}
         showsVerticalScrollIndicator={false}

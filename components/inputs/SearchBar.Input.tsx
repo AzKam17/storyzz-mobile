@@ -1,10 +1,17 @@
+import CancelSvg from "@/assets/svg/CancelSvg";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import React from "react";
-import { StyleSheet, TextInput, TextInputProps } from "react-native";
+import { Pressable, StyleSheet, TextInput, TextInputProps } from "react-native";
 import { View } from "tamagui";
 
 export const SearchBarInput = React.memo(function (props: TextInputProps) {
   const [focused, setFocused] = React.useState<boolean>(false);
+
+  const clearInput = React.useCallback(function () {
+    if(!props.onChangeText) return
+
+    props.onChangeText("");
+  }, [props.value, props.onChangeText]);
 
   const onFocus = () => {
     setFocused(true);
@@ -46,6 +53,7 @@ export const SearchBarInput = React.memo(function (props: TextInputProps) {
           {...props}
         />
       </View>
+      {!!props.value && <Pressable onPress={clearInput}><CancelSvg /></Pressable>}
     </View>
   );
 });
