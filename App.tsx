@@ -9,8 +9,17 @@ import { defaultConfig } from "@tamagui/config/v4";
 import * as SplashScreen from "expo-splash-screen";
 
 import { TamaguiProvider, createTamagui } from "tamagui";
-import { RedHatDisplay_900Black, useFonts } from "@expo-google-fonts/red-hat-display";
-import { RedHatText_400Regular, RedHatText_600SemiBold, RedHatText_500Medium, RedHatText_700Bold } from "@expo-google-fonts/red-hat-text";
+import {
+  RedHatDisplay_900Black,
+  useFonts,
+} from "@expo-google-fonts/red-hat-display";
+import {
+  RedHatText_400Regular,
+  RedHatText_600SemiBold,
+  RedHatText_500Medium,
+  RedHatText_700Bold,
+} from "@expo-google-fonts/red-hat-text";
+import Toast from "react-native-toast-message";
 
 const config = createTamagui(defaultConfig);
 
@@ -32,13 +41,14 @@ export default function App() {
   if (!loaded) {
     return null;
   }
-  
+
   return (
     <RecoilRoot>
       <TamaguiProvider config={config}>
         <GestureHandlerRootView style={styles.container}>
           <SafeAreaProvider>
             <Navigation />
+            <Toast position="bottom" />
           </SafeAreaProvider>
         </GestureHandlerRootView>
       </TamaguiProvider>

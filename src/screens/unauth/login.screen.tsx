@@ -7,6 +7,7 @@ import { PrimaryButton } from "@/ui/buttons";
 import { FormInput } from "@/ui/inputs";
 import { styled, YStack, Text } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 const SigninMessage = styled(Text, {
   textAlign: "center",
@@ -27,15 +28,33 @@ export const LoginScreen = React.memo(function () {
   const {
     register,
     control,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm<LoginForm>({ mode: "onChange" });
+
+  const submit = (value: LoginForm) => {
+    const { email, password } = value;
+
+    if (email === "ludovic@refletconsulting.com") {
+      Toast.show({
+        type: "error",
+        text1: "Email ou mot de passe incorrect",
+        text1Style: {
+          fontSize: 18,
+          fontWeight: "bold",
+          fontFamily: "RedHatText_500Medium",
+        },
+      });
+      return;
+    }
+
+    console.log(value);
+  };
 
   return (
     <Page>
       <PageTitleText>Connectez-vous</PageTitleText>
-      <YStack flex={1} 
-        justifyContent="center" 
-        gap={20} >
+      <YStack flex={1} justifyContent="center" gap={20}>
         <Controller
           name="email"
           control={control}
@@ -65,10 +84,6 @@ export const LoginScreen = React.memo(function () {
           control={control}
           rules={{
             required: "Le mot de passe est requis.",
-            minLength: {
-              value: 6,
-              message: "Le mot de passe doit contenir au moins 6 caractères.",
-            },
           }}
           render={({ field: { onChange, onBlur, value } }) => (
             <FormInput
@@ -90,7 +105,9 @@ export const LoginScreen = React.memo(function () {
           Nouveau sur Storyzz ?{" "}
           <SigninMessageBolg>Créer un compte</SigninMessageBolg>
         </SigninMessage>
-        <PrimaryButton disabled={!isValid}>Se connecter</PrimaryButton>
+        <PrimaryButton disabled={!isValid} onPress={handleSubmit(submit)}>
+          Se connecter
+        </PrimaryButton>
       </YStack>
     </Page>
   );
