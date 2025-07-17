@@ -30,11 +30,11 @@ const Tag = styled(Text, {
   fontSize: 13,
   fontFamily: "RedHatText_400Regular",
   color: "rgba(26, 26, 26, 1)",
-  backgroundColor: "rgba(242, 232, 232, 1)",
   alignSelf: "flex-start",
   paddingHorizontal: 10,
   paddingVertical: 2,
   borderRadius: 12,
+  backgroundColor: "rgba(242, 232, 232, 1)",
 });
 
 const MenImagePlaceholder = React.memo(function () {
