@@ -18,7 +18,11 @@ export const SignInScreen = React.memo(function () {
     <Page>
       <PageTitleText goBack={true}>Créez votre compte</PageTitleText>
 
-      <YStack flex={1}>
+      <YStack 
+        flex={1} 
+        justifyContent="center" 
+        gap={20} 
+      >
         <Controller
           name="email"
           control={control}

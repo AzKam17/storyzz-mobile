@@ -33,7 +33,9 @@ export const LoginScreen = React.memo(function () {
   return (
     <Page>
       <PageTitleText>Connectez-vous</PageTitleText>
-      <YStack flex={1}>
+      <YStack flex={1} 
+        justifyContent="center" 
+        gap={20} >
         <Controller
           name="email"
           control={control}
