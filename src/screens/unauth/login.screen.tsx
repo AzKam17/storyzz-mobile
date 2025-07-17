@@ -5,9 +5,25 @@ import { LoginForm } from "../../../types";
 import { Controller, useForm } from "react-hook-form";
 import { PrimaryButton } from "@/ui/buttons";
 import { FormInput } from "@/ui/inputs";
-import { YStack } from "tamagui";
+import { styled, YStack, Text } from "tamagui";
+import { useNavigation } from "@react-navigation/native";
+
+const SigninMessage = styled(Text, {
+  textAlign: "center",
+  fontFamily: "RedHatText_400Regular",
+  fontSize: 16,
+  color: "rgba(74, 74, 74, 1)",
+});
+
+const SigninMessageBolg = styled(SigninMessage, {
+  fontWeight: "bold",
+  fontFamily: "RedHatText_500Medium",
+  color: "rgba(74, 74, 74, 1)",
+});
 
 export const LoginScreen = React.memo(function () {
+  const navigation = useNavigation();
+
   const {
     register,
     control,
@@ -67,7 +83,13 @@ export const LoginScreen = React.memo(function () {
           )}
         />
       </YStack>
-      <PrimaryButton disabled={!isValid}>Se connecter</PrimaryButton>
+      <YStack gap={10}>
+        <SigninMessage onPress={() => navigation.navigate("sign_in")}>
+          Nouveau sur Storyzz ?{" "}
+          <SigninMessageBolg>Créer un compte</SigninMessageBolg>
+        </SigninMessage>
+        <PrimaryButton disabled={!isValid}>Se connecter</PrimaryButton>
+      </YStack>
     </Page>
   );
 });

@@ -16,7 +16,7 @@ export const SignInScreen = React.memo(function () {
 
   return (
     <Page>
-      <PageTitleText>Créez votre compte</PageTitleText>
+      <PageTitleText goBack={true}>Créez votre compte</PageTitleText>
 
       <YStack flex={1}>
         <Controller
