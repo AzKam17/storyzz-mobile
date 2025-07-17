@@ -23,7 +23,11 @@ import { createTamagui, TamaguiProvider } from "tamagui";
 
 const config = createTamagui(defaultConfig);
 
-export default function RootLayout() {
+export default function Root() {
+  return <RootNavigator />;
+}
+
+function RootNavigator() {
   const colorScheme = useColorScheme();
   const [loaded, error] = useFonts({
     RedHatText_400Regular,
@@ -47,8 +51,14 @@ export default function RootLayout() {
     <TamaguiProvider config={config}>
       <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
         <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
+          <Stack.Protected guard={true}>
+            <Stack.Screen name="sign-up" />
+          </Stack.Protected>
+
+          <Stack.Protected guard={false}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack.Protected>
         </Stack>
         <StatusBar style="auto" />
       </ThemeProvider>

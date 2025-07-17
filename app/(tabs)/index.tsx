@@ -75,7 +75,6 @@ export default function HomeScreen() {
         );
       }
 
-      console.log(filteredPrograms)
       return filteredPrograms;
     },
     [searchValue, tagList]
