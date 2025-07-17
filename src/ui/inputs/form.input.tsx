@@ -57,7 +57,7 @@ export const FormInput = React.memo(function ({
 const styles = StyleSheet.create({
   inputContainer: {
     borderWidth: 3,
-    borderColor: "rgba(255, 59, 48, 0)",
+    borderColor: "white",
     flexDirection: "row",
     backgroundColor: "white",
     padding: 10,
