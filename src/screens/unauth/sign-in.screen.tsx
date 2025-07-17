@@ -5,12 +5,13 @@ import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import { SignInForm } from "../../../types";
 import { YStack } from "tamagui";
+import { PrimaryButton } from "@/ui/buttons";
 
 export const SignInScreen = React.memo(function () {
   const {
     register,
     control,
-    formState: { errors },
+    formState: { errors , isValid},
   } = useForm<SignInForm>({ mode: "onChange" });
 
   return (
@@ -94,7 +95,7 @@ export const SignInScreen = React.memo(function () {
           )}
         />
       </YStack>
-      
+      <PrimaryButton disabled={!isValid}>Créer un compte</PrimaryButton>
     </Page>
   );
 });
