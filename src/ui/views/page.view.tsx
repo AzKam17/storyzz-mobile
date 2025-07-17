@@ -11,16 +11,14 @@ const CPage = styled(YStack, {
 
 export const Page = React.memo(function ({
   children,
-  hasBottom,
 }: {
-  hasBottom?: boolean;
   children?: React.ReactNode;
 }) {
   const insets = useSafeAreaInsets();
   return (
     <CPage
       paddingTop={insets.top}
-      paddingBottom={hasBottom ? insets.bottom : 0}
+      paddingBottom={insets.bottom}
     >
       {children || <></>}
     </CPage>

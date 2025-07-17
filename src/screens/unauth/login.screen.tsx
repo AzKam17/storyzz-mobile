@@ -1,23 +1,22 @@
-import { FormInput, PrimaryInput } from "@/ui/inputs";
 import { PageTitleText } from "@/ui/texts";
 import { Page } from "@/ui/views";
 import React from "react";
+import { LoginForm } from "../../../types";
 import { Controller, useForm } from "react-hook-form";
-import { SignInForm } from "../../../types";
-import { YStack } from "tamagui";
 import { PrimaryButton } from "@/ui/buttons";
+import { FormInput } from "@/ui/inputs";
+import { YStack } from "tamagui";
 
-export const SignInScreen = React.memo(function () {
+export const LoginScreen = React.memo(function () {
   const {
     register,
     control,
-    formState: { errors , isValid},
-  } = useForm<SignInForm>({ mode: "onChange" });
+    formState: { errors, isValid },
+  } = useForm<LoginForm>({ mode: "onChange" });
 
   return (
     <Page>
-      <PageTitleText>Créez votre compte</PageTitleText>
-
+      <PageTitleText>Connectez-vous</PageTitleText>
       <YStack flex={1}>
         <Controller
           name="email"
@@ -67,35 +66,8 @@ export const SignInScreen = React.memo(function () {
             />
           )}
         />
-
-        <Controller
-          name="repeat_password"
-          control={control}
-          rules={{
-            required: "Veuillez confirmer votre mot de passe.",
-            validate: (value, formValues) => {
-              return (
-                value === formValues.password ||
-                "Les mots de passe ne correspondent pas."
-              );
-            },
-          }}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <FormInput
-              title="Confirmer le mot de passe"
-              error={errors.repeat_password?.message}
-              inputProps={{
-                value: value,
-                onBlur: onBlur,
-                onChangeText: onChange,
-                placeholder: "Retapez votre mot de passe sécurisé",
-                secureTextEntry: true,
-              }}
-            />
-          )}
-        />
       </YStack>
-      <PrimaryButton disabled={!isValid}>Créer un compte</PrimaryButton>
+      <PrimaryButton disabled={!isValid}>Se connecter</PrimaryButton>
     </Page>
   );
 });

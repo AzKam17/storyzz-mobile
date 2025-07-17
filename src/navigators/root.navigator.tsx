@@ -1,4 +1,5 @@
 import { SignInScreen } from "@/screens/unauth";
+import { LoginScreen } from "@/screens/unauth/login.screen";
 import {
   createStaticNavigation,
   StaticParamList,
@@ -6,11 +7,13 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 
 const RootNavigator = createStackNavigator({
+  initialRouteName: 'login',
   screenOptions: {
     headerShown: false,
   },
   screens: {
     sign_in: { screen: SignInScreen },
+    login: { screen: LoginScreen },
   },
 });
 
