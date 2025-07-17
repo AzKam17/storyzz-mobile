@@ -27,6 +27,7 @@
     "react-native-mmkv": "^3.3.0",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
+    "react-native-svg": "15.11.2",
     "react-native-toast-message": "^2.3.3",
     "recoil": "^0.7.7",
     "tamagui": "^1.132.8"
