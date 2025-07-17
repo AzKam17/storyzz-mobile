@@ -48,7 +48,7 @@ export const LoginScreen = React.memo(function () {
       return;
     }
 
-    console.log(value);
+    navigation.navigate("bottom_navigator");
   };
 
   return (

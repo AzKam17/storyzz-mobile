@@ -1,3 +1,4 @@
+import { BottomNavigator } from "@/navigators/bottom.navigator";
 import { SignInScreen } from "@/screens/unauth";
 import { LoginScreen } from "@/screens/unauth/login.screen";
 import {
@@ -14,6 +15,7 @@ const RootNavigator = createStackNavigator({
   screens: {
     sign_in: { screen: SignInScreen },
     login: { screen: LoginScreen },
+    bottom_navigator: { screen: BottomNavigator },
   },
 });
 
