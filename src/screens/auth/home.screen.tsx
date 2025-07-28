@@ -50,7 +50,7 @@ export const HomeScreen = React.memo(function(){
   }, []);
 
   return (
-    <Page hasBottom={false}>
+    <Page hasBottom={true}>
       <PageTitleText>Programes</PageTitleText>
       <SearchBarInput value={searchValue} onChangeText={setSearchValue} />
       <PillButtonList values={tagList} setValuesList={setTagList} />
