@@ -70,7 +70,7 @@ export const ProgramCardView = React.memo(function (props: Props) {
     props;
     const navigation = useNavigation()
   return (
-    <OuterView onPress={() => console.log(`momo ${props.id}`)}>
+    <OuterView onPress={() => console.log(`${props.id}`)}>
       <YStack flex={1} justifyContent="center">
         {mentorGender === "men" ? (
           <MenImagePlaceholder />
