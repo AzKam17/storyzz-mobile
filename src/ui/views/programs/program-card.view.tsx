@@ -68,9 +68,20 @@ type Props = {
 export const ProgramCardView = React.memo(function (props: Props) {
   const { mentorGender, mentorName, programName, programDescription, tag } =
     props;
-    const navigation = useNavigation()
+  const navigation = useNavigation();
+
+  const goToProgramDetail = React.useCallback(
+    function () {
+      navigation.navigate("auth", {
+        screen: "program",
+        params: { screen: "detail", params: { programId: `${props.id}` } },
+      });
+    },
+    [props]
+  );
+
   return (
-    <OuterView onPress={() => console.log(`${props.id}`)}>
+    <OuterView onPress={goToProgramDetail}>
       <YStack flex={1} justifyContent="center">
         {mentorGender === "men" ? (
           <MenImagePlaceholder />
