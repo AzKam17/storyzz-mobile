@@ -1,21 +1,21 @@
-import { BottomNavigator } from "@/navigators/bottom.navigator";
-import { SignInScreen } from "@/screens/unauth";
-import { LoginScreen } from "@/screens/unauth/login.screen";
+import { useIsSignedOut, useIsSignedIn } from "@/hooks/auth";
+import { AuthNavigator } from "@/navigators/auth.navigator";
+import { UnAuthNavigator } from "@/navigators/unauth.navigator";
+
 import {
   createStaticNavigation,
   StaticParamList,
 } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const RootNavigator = createStackNavigator({
-  initialRouteName: 'login',
+
+const RootNavigator = createNativeStackNavigator({
   screenOptions: {
     headerShown: false,
   },
   screens: {
-    sign_in: { screen: SignInScreen },
-    login: { screen: LoginScreen },
-    bottom_navigator: { screen: BottomNavigator },
+    auth: { if: useIsSignedIn, screen: AuthNavigator },
+    unauth: { if: useIsSignedOut, screen: UnAuthNavigator },
   },
 });
 

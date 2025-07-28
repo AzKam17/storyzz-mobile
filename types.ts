@@ -1,4 +1,4 @@
-
+// Forms
 export interface SignInForm {
     email: string;
     password: string;
@@ -8,4 +8,9 @@ export interface SignInForm {
 export interface LoginForm {
     email: string;
     password: string;
+}
+
+// States types
+export interface SessionType {
+    isAuthenticated: boolean;
 }

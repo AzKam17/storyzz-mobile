@@ -1,8 +1,8 @@
+import { useAsyncStorageDevTools } from '@dev-plugins/async-storage';
 import { Navigation } from "@/navigators/root.navigator";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { RecoilRoot } from "recoil";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { defaultConfig } from "@tamagui/config/v4";
@@ -24,6 +24,8 @@ import Toast from "react-native-toast-message";
 const config = createTamagui(defaultConfig);
 
 export default function App() {
+  useAsyncStorageDevTools();
+  
   const [loaded, error] = useFonts({
     RedHatText_400Regular,
     RedHatText_600SemiBold,
@@ -43,16 +45,14 @@ export default function App() {
   }
 
   return (
-    <RecoilRoot>
-      <TamaguiProvider config={config}>
-        <GestureHandlerRootView style={styles.container}>
-          <SafeAreaProvider>
-            <Navigation />
-            <Toast position="bottom" />
-          </SafeAreaProvider>
-        </GestureHandlerRootView>
-      </TamaguiProvider>
-    </RecoilRoot>
+    <TamaguiProvider config={config}>
+      <GestureHandlerRootView style={styles.container}>
+        <SafeAreaProvider>
+          <Navigation />
+          <Toast position="bottom" />
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
+    </TamaguiProvider>
   );
 }
 

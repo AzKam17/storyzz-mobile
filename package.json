@@ -3,36 +3,39 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "expo start --clear",
+    "start": "clear && expo start --clear",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
   },
   "dependencies": {
+    "@dev-plugins/async-storage": "^0.3.1",
     "@expo-google-fonts/red-hat-display": "^0.4.0",
     "@expo-google-fonts/red-hat-text": "^0.4.0",
     "@expo/vector-icons": "^14.1.0",
+    "@react-native-async-storage/async-storage": "2.1.2",
     "@react-navigation/bottom-tabs": "^7.4.2",
     "@react-navigation/native": "^7.1.14",
+    "@react-navigation/native-stack": "^7.3.23",
     "@react-navigation/stack": "^7.4.2",
     "@shopify/flash-list": "1.7.6",
     "@tamagui/config": "^1.132.8",
     "@tamagui/input": "^1.132.8",
-    "expo": "~53.0.17",
+    "expo": "53.0.20",
     "expo-haptics": "^14.1.4",
-    "expo-image": "~2.3.2",
+    "expo-image": "~2.4.0",
     "expo-splash-screen": "^0.30.10",
     "expo-status-bar": "~2.2.3",
+    "jotai": "^2.12.5",
     "react": "19.0.0",
     "react-hook-form": "^7.60.0",
     "react-native": "0.79.5",
-    "react-native-gesture-handler": "^2.27.1",
+    "react-native-gesture-handler": "~2.24.0",
     "react-native-mmkv": "^3.3.0",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "~4.11.1",
     "react-native-svg": "15.11.2",
     "react-native-toast-message": "^2.3.3",
-    "recoil": "^0.7.7",
     "tamagui": "^1.132.8"
   },
   "devDependencies": {
@@ -40,5 +43,12 @@
     "@types/react": "~19.0.10",
     "typescript": "~5.8.3"
   },
-  "private": true
+  "private": true,
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "listUnknownPackages": false
+      }
+    }
+  }
 }

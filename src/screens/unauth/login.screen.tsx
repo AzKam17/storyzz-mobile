@@ -8,6 +8,8 @@ import { FormInput } from "@/ui/inputs";
 import { styled, YStack, Text } from "tamagui";
 import { useNavigation } from "@react-navigation/native";
 import Toast from "react-native-toast-message";
+import { useAtom } from "jotai";
+import { SessionState } from "@/states/auth";
 
 const SigninMessage = styled(Text, {
   textAlign: "center",
@@ -23,6 +25,7 @@ const SigninMessageBolg = styled(SigninMessage, {
 });
 
 export const LoginScreen = React.memo(function () {
+  const [session, setSession] = useAtom(SessionState);
   const navigation = useNavigation();
 
   const {
@@ -48,7 +51,9 @@ export const LoginScreen = React.memo(function () {
       return;
     }
 
-    navigation.navigate("bottom_navigator");
+    setSession({
+      isAuthenticated: true
+    });
   };
 
   return (
@@ -101,7 +106,9 @@ export const LoginScreen = React.memo(function () {
         />
       </YStack>
       <YStack gap={10}>
-        <SigninMessage onPress={() => navigation.navigate("sign_in")}>
+        <SigninMessage
+          onPress={() => navigation.navigate("unauth", { screen: "sign_in" })}
+        >
           Nouveau sur Storyzz ?{" "}
           <SigninMessageBolg>Créer un compte</SigninMessageBolg>
         </SigninMessage>
