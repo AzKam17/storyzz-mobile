@@ -56,7 +56,7 @@ export const HomeScreen = React.memo(function(){
       <PillButtonList values={tagList} setValuesList={setTagList} />
       <FlashList
         data={listValues}
-        renderItem={({ item }) => <ProgramCardView {...item} />}
+        renderItem={({ item, index }) => <ProgramCardView id={index} {...item} />}
         ListEmptyComponent={<NoContentSearchView onPress={clearSearch} />}
         estimatedItemSize={300}
         showsVerticalScrollIndicator={false}

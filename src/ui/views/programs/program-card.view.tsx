@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import { Image } from "expo-image";
 import React from "react";
 import { styled, Text, XStack, YStack } from "tamagui";
@@ -7,7 +8,7 @@ const OuterView = styled(XStack, {
   padding: 16,
   borderRadius: 12,
   backgroundColor: "white",
-  marginBottom: 15
+  marginBottom: 15,
 });
 
 const MentorTitle = styled(Text, {
@@ -56,6 +57,7 @@ const WomenImagePlaceholder = React.memo(function () {
 });
 
 type Props = {
+  id: number;
   mentorGender: string;
   mentorName: string;
   programName: string;
@@ -66,8 +68,9 @@ type Props = {
 export const ProgramCardView = React.memo(function (props: Props) {
   const { mentorGender, mentorName, programName, programDescription, tag } =
     props;
+    const navigation = useNavigation()
   return (
-    <OuterView>
+    <OuterView onPress={() => console.log(`momo ${props.id}`)}>
       <YStack flex={1} justifyContent="center">
         {mentorGender === "men" ? (
           <MenImagePlaceholder />
