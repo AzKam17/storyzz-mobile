@@ -17,6 +17,7 @@ import {
   RedHatText_600SemiBold,
   RedHatText_500Medium,
   RedHatText_700Bold,
+  
 } from "@expo-google-fonts/red-hat-text";
 import Toast from "react-native-toast-message";
 
