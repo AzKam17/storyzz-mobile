@@ -46,13 +46,6 @@ const routes = [
   { key: "mentor", title: "Mentor" },
 ];
 
-const renderScene = SceneMap({
-  about: ProgramDetailAboutScreen,
-  schedule: ProgramDetailScheduleScreen,
-  targetUsers: ProgramDetailTargetUsersScreen,
-  mentor: ProgramDetailMentorScreen,
-});
-
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
   fontFamily: "RedHatText_700Bold",
@@ -86,6 +79,7 @@ type Props = StaticScreenProps<{
 }>;
 
 export const ProgramDetailScreen = React.memo(function (props: Props) {
+  const { programId } = props.route.params;
   const layout = useWindowDimensions();
 
   const [index, setIndex] = React.useState(0);
@@ -97,6 +91,21 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
     const idx = parseInt(programId);
     setProgram(programs[idx]);
   }, [props.route.params]);
+
+  const renderScene = ({ route }: { route: { key: string } }) => {
+    switch (route.key) {
+      case "about":
+        return <ProgramDetailAboutScreen programId={programId} />;
+      case "schedule":
+        return <ProgramDetailScheduleScreen programId={programId} />;
+      case "targetUsers":
+        return <ProgramDetailTargetUsersScreen programId={programId} />;
+      case "mentor":
+        return <ProgramDetailMentorScreen programId={programId} />;
+      default:
+        return null;
+    }
+  };
 
   if (!program) {
     return null;
@@ -140,14 +149,13 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             <MiscText>50</MiscText>
           </XStack>
         </XStack>
-        <YStack flex={1}>
+        <YStack height={layout.height}>
           <TabView
             renderTabBar={renderTabBar}
             renderScene={renderScene}
             navigationState={{ index, routes }}
             onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-            style={{ flex: 1 }}
+            initialLayout={{ width: layout.width, }}
           />
         </YStack>
       </ScrollView>
@@ -158,5 +166,6 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 const styles = StyleSheet.create({
   contentContainerStyle: {
     gap: 15,
+    paddingBottom: 20
   },
 });
