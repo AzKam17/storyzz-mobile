@@ -1,5 +1,5 @@
+import { MenImagePlaceholder, WomenImagePlaceholder } from "@/ui/views/programs/mentor-image-placeholder.view";
 import { useNavigation } from "@react-navigation/native";
-import { Image } from "expo-image";
 import React from "react";
 import { styled, Text, XStack, YStack } from "tamagui";
 
@@ -38,23 +38,7 @@ const Tag = styled(Text, {
   backgroundColor: "rgba(242, 232, 232, 1)",
 });
 
-const MenImagePlaceholder = React.memo(function () {
-  return (
-    <Image
-      source={require("~/images/default-image-men.png")}
-      style={{ width: 100, height: 100, borderRadius: 100 }}
-    />
-  );
-});
 
-const WomenImagePlaceholder = React.memo(function () {
-  return (
-    <Image
-      source={require("~/images/default-image-women.png")}
-      style={{ width: 100, height: 100, borderRadius: 100 }}
-    />
-  );
-});
 
 type Props = {
   id: number;
