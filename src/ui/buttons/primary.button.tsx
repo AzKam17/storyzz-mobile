@@ -3,6 +3,7 @@ import { Button, styled } from "tamagui";
 
 
 export const PrimaryButton = styled(Button, {
+  width: '100%', 
   backgroundColor: "rgba(255, 59, 48, 1)",
   fontFamily: 'RedHatText_400Regular',
   color: "white",

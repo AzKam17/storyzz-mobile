@@ -6,7 +6,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { defaultConfig } from "@tamagui/config/v4";
 import * as SplashScreen from "expo-splash-screen";
-
+//4.1.2
 import { TamaguiProvider, createTamagui } from "tamagui";
 import {
   RedHatDisplay_900Black,

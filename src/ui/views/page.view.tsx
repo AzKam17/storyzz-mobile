@@ -24,7 +24,7 @@ export const Page = React.memo(function ({
     <CPage
       paddingTop={insets.top}
       paddingBottom={hasBottom ? 0 : insets.bottom}
-      style={style}
+      style={[{flex: 1},style]}
     >
       {children || <></>}
     </CPage>

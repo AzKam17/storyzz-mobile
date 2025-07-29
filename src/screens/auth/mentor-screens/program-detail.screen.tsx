@@ -15,36 +15,9 @@ import {
   MenImagePlaceholder,
   WomenImagePlaceholder,
 } from "@/ui/views/programs/mentor-image-placeholder.view";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-const renderTabBar = (props: any) => (
-  <TabBar
-    {...props}
-    indicatorStyle={{ backgroundColor: "rgba(0, 0, 0, 1)" }}
-    activeColor="rgba(0, 0, 0, 1)"
-    inactiveColor="rgba(74, 74, 74, 1)"
-    style={{ backgroundColor: "rgba(247, 243, 238, 1)" }}
-    labelStyle={{
-      fontSize: 12,
-      fontWeight: "bold",
-      textAlign: "center",
-      lineHeight: 14,
-      fontFamily: "RedHatText_700Bold",
-    }}
-    tabStyle={{
-      width: "auto",
-      minWidth: 80,
-      paddingHorizontal: 8,
-    }}
-    scrollEnabled={true}
-  />
-);
-
-const routes = [
-  { key: "about", title: "À propos" },
-  { key: "schedule", title: "Apprentissage" },
-  { key: "targetUsers", title: "Pour qui" },
-  { key: "mentor", title: "Mentor" },
-];
+const Tab = createMaterialTopTabNavigator();
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -149,15 +122,68 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             <MiscText>50</MiscText>
           </XStack>
         </XStack>
-        <YStack height={layout.height}>
-          <TabView
-            renderTabBar={renderTabBar}
-            renderScene={renderScene}
-            navigationState={{ index, routes }}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width, }}
+        <Tab.Navigator 
+          screenOptions={{
+            tabBarActiveTintColor: 'rgba(74, 74, 74, 1)',
+            tabBarInactiveTintColor: 'rgba(74, 74, 74, 1)',
+            tabBarStyle: {
+              backgroundColor: 'rgba(247, 243, 238, 1)',
+            },
+            tabBarIndicatorStyle: {
+              backgroundColor: 'rgba(74, 74, 74, 1)',
+            },
+            tabBarItemStyle: {
+              width: 'auto',
+              minWidth: 80,
+              paddingHorizontal: 8,
+            },
+            tabBarScrollEnabled: true,
+            tabBarLabel: ({ focused, children }) => {
+              return (
+                <Text
+                  style={{
+                    fontSize: 16,
+                    textAlign: 'center',
+                    color: 'rgba(74, 74, 74, 1)',
+                    fontFamily: focused ? 'RedHatText_700Bold' : 'RedHatText_400Regular',
+                    lineHeight: 16,
+                  }}
+                >
+                  {children}
+                </Text>
+              );
+            },
+          }}
+        >
+          <Tab.Screen
+            name="about"
+            options={{
+              title: "À propos",
+            }}
+            component={() => <ProgramDetailAboutScreen programId={programId} />}
           />
-        </YStack>
+          <Tab.Screen
+            name="schedule"
+            options={{
+              title: "Apprentissage",
+            }}
+            component={() => <ProgramDetailScheduleScreen programId={programId} />}
+          />
+          <Tab.Screen
+            name="targetUsers"
+            options={{
+              title: "Pour qui",
+            }}
+            component={() => <ProgramDetailTargetUsersScreen programId={programId} />}
+          />
+          <Tab.Screen
+            name="mentor"
+            options={{
+              title: "Mentor",
+            }}
+            component={() => <ProgramDetailMentorScreen programId={programId} />}
+          />
+        </Tab.Navigator>
       </ScrollView>
     </Page>
   );
@@ -166,6 +192,6 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 const styles = StyleSheet.create({
   contentContainerStyle: {
     gap: 15,
-    paddingBottom: 20
+    paddingBottom: 20,
   },
 });

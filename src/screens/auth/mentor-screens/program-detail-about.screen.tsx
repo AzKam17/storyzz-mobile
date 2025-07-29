@@ -48,7 +48,7 @@ const SimilarProgramCard = React.memo(function (props: Program) {
   const { mentorGender, mentorName, programName, tag } = props;
   return (
     <YStack
-    gap={5}
+      gap={5}
       maxWidth={300}
       padding={20}
       backgroundColor={"white"}
@@ -119,7 +119,11 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           session est faite pour vous.
         </TabSectionText>
       </YStack>
-      <YStack gap={15} paddingVertical={20} backgroundColor={"rgba(242, 232, 232, 1)"}>
+      <YStack
+        gap={15}
+        paddingVertical={20}
+        backgroundColor={"rgba(242, 232, 232, 1)"}
+      >
         <TabSectionTitle>Programmes similaires</TabSectionTitle>
         <ScrollView
           horizontal={true}
