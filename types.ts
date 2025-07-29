@@ -10,6 +10,15 @@ export interface LoginForm {
     password: string;
 }
 
+// types
+export interface Program {
+    mentorGender: "women" | "men";
+    mentorName: string;
+    programName: string;
+    programDescription: string;
+    tag: string;
+}
+
 // States types
 export interface SessionType {
     isAuthenticated: boolean;

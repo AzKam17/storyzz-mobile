@@ -1,4 +1,6 @@
-export const programs = [
+import { Program } from "../../types";
+
+export const programs: Program[] = [
   {
     mentorGender: "women",
     mentorName: "Edith Brou-Bleu",

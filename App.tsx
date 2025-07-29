@@ -1,4 +1,3 @@
-import { useAsyncStorageDevTools } from '@dev-plugins/async-storage';
 import { Navigation } from "@/navigators/root.navigator";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
@@ -24,8 +23,6 @@ import Toast from "react-native-toast-message";
 const config = createTamagui(defaultConfig);
 
 export default function App() {
-  useAsyncStorageDevTools();
-  
   const [loaded, error] = useFonts({
     RedHatText_400Regular,
     RedHatText_600SemiBold,
