@@ -10,6 +10,7 @@ import {
   WomenImagePlaceholder,
 } from "@/ui/views/programs/mentor-image-placeholder.view";
 import { programs } from "@/utils";
+import { AntDesign } from "@expo/vector-icons";
 
 type Props = {
   programId: string;
@@ -94,7 +95,7 @@ const SimilarProgramCard = React.memo(function (props: Program) {
 
 export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
   return (
-    <YStack gap={10} paddingVertical={20}>
+    <YStack gap={10} paddingVertical={20} paddingRight={10}>
       <YStack>
         <TabSectionTitle>À propos</TabSectionTitle>
         <TabSectionText>
@@ -106,8 +107,32 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           progression rapide et durable.
         </TabSectionText>
       </YStack>
-      <YStack>
+      <YStack gap={10}>
         <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
+        <XStack gap={10} alignItems="center" maxWidth={'80%'}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Développer une confiance inébranlable en prise de parole.
+          </TabSectionText>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={'80%'}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Structurer des récits qui captivent et persuadent.
+          </TabSectionText>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={'80%'}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Utiliser le langage corporel pour renforcer votre message.
+          </TabSectionText>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={'80%'}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Adapter votre ton pour chaque type d'audience.
+          </TabSectionText>
+        </XStack>
       </YStack>
       <YStack>
         <TabSectionTitle>Pour qui</TabSectionTitle>
