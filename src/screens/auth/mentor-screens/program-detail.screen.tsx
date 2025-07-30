@@ -1,6 +1,6 @@
 import { Page } from "@/ui/views";
 import { programs } from "@/utils";
-import { StaticScreenProps } from "@react-navigation/native";
+import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import { styled, Text, View } from "@tamagui/core";
 import React from "react";
 import { Program } from "../../../../types";
@@ -16,7 +16,11 @@ import {
   WomenImagePlaceholder,
 } from "@/ui/views/programs/mentor-image-placeholder.view";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { MaterialTabBar, Tabs } from "react-native-collapsible-tab-view";
+import {
+  MaterialTabBar,
+  Tabs,
+  useCurrentTabScrollY,
+} from "react-native-collapsible-tab-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PrimaryButton } from "@/ui/buttons";
 import { Image } from "expo-image";
@@ -25,6 +29,7 @@ import ClockSvg from "~/svg/ClockSvg";
 import CameraSvg from "~/svg/CameraSvg";
 import BookOpenSvg from "~/svg/BookOpenSvg";
 import PersonGroupSvg from "~/svg/PersonGroupSvg";
+import { useAnimatedReaction } from "react-native-reanimated";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -59,18 +64,46 @@ type Props = StaticScreenProps<{
 }>;
 
 export const ProgramDetailScreen = React.memo(function (props: Props) {
+  const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const { programId } = props.route.params;
-
   const [index, setIndex] = React.useState(0);
-
   const [program, setProgram] = React.useState<Program>();
+
+  // Position where the program title is located (approximately)
+  const PROGRAM_TITLE_POSITION = 280; // Adjust based on your layout
 
   React.useEffect(() => {
     const { programId } = props.route.params;
     const idx = parseInt(programId);
     setProgram(programs[idx]);
   }, [props.route.params]);
+
+  React.useLayoutEffect(() => {
+    if (!program) return;
+    navigation.setOptions({
+      headerTitle: program.programName,
+    });
+  }, [program]);
+
+  const ScrollTracker = React.memo(() => {
+    const scrollY = useCurrentTabScrollY();
+
+    useAnimatedReaction(
+      () => scrollY.value,
+      (currentScrollY) => {
+        if (currentScrollY >= PROGRAM_TITLE_POSITION) {
+          console.log("🎯 Program title reached the screen header!", {
+            scrollY: currentScrollY,
+            titlePosition: PROGRAM_TITLE_POSITION,
+            programName: program?.programName,
+          });
+        }
+      }
+    );
+
+    return null;
+  });
 
   const Header = React.useCallback(
     function ({ program }: { program: Program }) {
@@ -117,7 +150,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               <MiscText>Leadership</MiscText>
             </XStack>
             <XStack gap={5}>
-              <PersonGroupSvg/>
+              <PersonGroupSvg />
               <MiscText>50</MiscText>
             </XStack>
           </XStack>
@@ -130,6 +163,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
   if (!program) {
     return null;
   }
+
   return (
     <>
       <Page hasBottom={true} style={{ paddingTop: 0 }}>
@@ -147,47 +181,52 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           renderHeader={() => <Header program={program} />}
           headerHeight={300}
           renderTabBar={(props) => {
-            console.log(props)
-            return <MaterialTabBar
-              {...props}
-              activeColor="rgba(74, 74, 74, 1)"
-              inactiveColor="rgba(153, 77, 77, 1)"
-              scrollEnabled={true}
-              indicatorStyle={{
-                backgroundColor: 'rgba(0, 0, 0, 1)'
-              }}
-              labelStyle={{
-                fontFamily: 'RedHatText_400Regular'
-              }}
-            />
+            return (
+              <MaterialTabBar
+                {...props}
+                activeColor="rgba(74, 74, 74, 1)"
+                inactiveColor="rgba(153, 77, 77, 1)"
+                scrollEnabled={true}
+                indicatorStyle={{
+                  backgroundColor: "rgba(0, 0, 0, 1)",
+                }}
+                labelStyle={{
+                  fontFamily: "RedHatText_400Regular",
+                }}
+              />
+            );
           }}
-          
         >
           <Tabs.Tab name="A" label="A propos">
             <Tabs.ScrollView>
+              <ScrollTracker />
               <ProgramDetailAboutScreen programId={programId} />
             </Tabs.ScrollView>
           </Tabs.Tab>
 
           <Tabs.Tab name="B" label="Apprentissage">
             <Tabs.ScrollView>
+              <ScrollTracker />
               <ProgramDetailScheduleScreen programId={programId} />
             </Tabs.ScrollView>
           </Tabs.Tab>
 
           <Tabs.Tab name="C" label="Pour qui">
             <Tabs.ScrollView>
+              <ScrollTracker />
               <ProgramDetailTargetUsersScreen programId={programId} />
             </Tabs.ScrollView>
           </Tabs.Tab>
 
           <Tabs.Tab name="D" label="Mentor">
             <Tabs.ScrollView>
+              <ScrollTracker />
               <ProgramDetailMentorScreen programId={programId} />
             </Tabs.ScrollView>
           </Tabs.Tab>
         </Tabs.Container>
       </Page>
+
       <XStack
         gap={10}
         padding={10}
