@@ -16,12 +16,15 @@ import {
   WomenImagePlaceholder,
 } from "@/ui/views/programs/mentor-image-placeholder.view";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { Tabs } from "react-native-collapsible-tab-view";
+import { MaterialTabBar, Tabs } from "react-native-collapsible-tab-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { PrimaryButton } from "@/ui/buttons";
 import { Image } from "expo-image";
-
-const Tab = createMaterialTopTabNavigator();
+import HeartSvg from "~/svg/HeartSvg";
+import ClockSvg from "~/svg/ClockSvg";
+import CameraSvg from "~/svg/CameraSvg";
+import BookOpenSvg from "~/svg/BookOpenSvg";
+import PersonGroupSvg from "~/svg/PersonGroupSvg";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -93,23 +96,28 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                 <MentorJobText>Experte en communication</MentorJobText>
               </YStack>
             </XStack>
-            <XStack>
+            <XStack gap={5}>
+              <HeartSvg />
               <MiscText>700</MiscText>
             </XStack>
           </XStack>
-          <XStack>
-            <XStack>
+          <XStack gap={20}>
+            <XStack gap={5}>
+              <ClockSvg />
               <MiscText>01h30</MiscText>
             </XStack>
-            <XStack>
+            <XStack gap={5}>
+              <CameraSvg />
               <MiscText>Visio conférence</MiscText>
             </XStack>
           </XStack>
-          <XStack>
-            <XStack>
+          <XStack gap={20}>
+            <XStack gap={5}>
+              <BookOpenSvg />
               <MiscText>Leadership</MiscText>
             </XStack>
-            <XStack>
+            <XStack gap={5}>
+              <PersonGroupSvg/>
               <MiscText>50</MiscText>
             </XStack>
           </XStack>
@@ -138,6 +146,22 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           }}
           renderHeader={() => <Header program={program} />}
           headerHeight={300}
+          renderTabBar={(props) => {
+            console.log(props)
+            return <MaterialTabBar
+              {...props}
+              activeColor="rgba(74, 74, 74, 1)"
+              inactiveColor="rgba(153, 77, 77, 1)"
+              scrollEnabled={true}
+              indicatorStyle={{
+                backgroundColor: 'rgba(0, 0, 0, 1)'
+              }}
+              labelStyle={{
+                fontFamily: 'RedHatText_400Regular'
+              }}
+            />
+          }}
+          
         >
           <Tabs.Tab name="A" label="A propos">
             <Tabs.ScrollView>
