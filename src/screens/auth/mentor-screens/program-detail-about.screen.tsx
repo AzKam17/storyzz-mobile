@@ -119,6 +119,10 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           session est faite pour vous.
         </TabSectionText>
       </YStack>
+      <YStack>
+        <TabSectionTitle>Votre mentor</TabSectionTitle>
+        <MentorCard />
+      </YStack>
       <YStack
         gap={15}
         paddingVertical={20}
@@ -134,10 +138,6 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
             <SimilarProgramCard key={idx} {...e} />
           ))}
         </ScrollView>
-      </YStack>
-      <YStack>
-        <TabSectionTitle>Votre mentor</TabSectionTitle>
-        <MentorCard />
       </YStack>
     </YStack>
   );
