@@ -33,13 +33,13 @@ import { useAnimatedReaction } from "react-native-reanimated";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
-  color: 'rgba(0, 0, 0, 1)',
+  color: "rgba(0, 0, 0, 1)",
   fontFamily: "RedHatText_700Bold",
 });
 
 const ProgramDescriptionText = styled(Text, {
   fontSize: 17,
-  color: 'rgba(74, 74, 74, 1)',
+  color: "rgba(74, 74, 74, 1)",
   fontFamily: "RedHatText_400Regular",
 });
 
@@ -168,7 +168,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 
   return (
     <>
-      <Page hasBottom={true} style={{ paddingTop: 0,}}>
+      <Page hasBottom={true} style={{ paddingTop: 0 }}>
         <Tabs.Container
           headerContainerStyle={{
             shadowColor: "rgba(0, 0, 0, 0)",
@@ -232,6 +232,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
       <XStack
         gap={10}
         padding={10}
+        paddingHorizontal={30}
         backgroundColor={"white"}
         paddingBottom={insets.bottom}
         alignItems="center"
@@ -245,7 +246,9 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           </Text>
         </View>
         <View flex={1}>
-          <PrimaryButton>Commencer</PrimaryButton>
+          <PrimaryButton>
+            <PrimaryButton.Text>Commencer</PrimaryButton.Text>
+          </PrimaryButton>
         </View>
       </XStack>
     </>

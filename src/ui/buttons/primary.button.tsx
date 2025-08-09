@@ -1,17 +1,29 @@
 import React from "react";
-import { Button, styled } from "tamagui";
+import { Button, Text, styled, View, withStaticProperties } from "tamagui";
 
-
-export const PrimaryButton = styled(Button, {
-  width: '100%', 
+export const PButtonFrame = styled(View, {
+  name: 'Button',
+  width: '100%',
+  justifyContent: 'center',
+  alignItems: 'center',
+  height: 50,
+  borderRadius: 8,
   backgroundColor: "rgba(255, 59, 48, 1)",
-  fontFamily: 'RedHatText_400Regular',
-  color: "white",
-  '$color': "white",
   disabledStyle: {
     backgroundColor: "rgba(169, 169, 169, 1)",
   },
   pressStyle:{
     backgroundColor: "rgba(255, 59, 48, 0.8)",
   }
+})
+
+export const PButtonText = styled(Text, {
+  name: 'ButtonText',
+  color: 'rgba(255, 255, 255, 1)',
+  fontFamily: 'RedHatText_400Regular',
+})
+
+export const PrimaryButton = withStaticProperties(PButtonFrame, {
+  name: 'PrimaryButton',
+  Text: PButtonText,
 })
