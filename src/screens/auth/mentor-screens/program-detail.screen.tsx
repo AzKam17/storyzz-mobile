@@ -97,27 +97,27 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
       <View style={styles.tabBar}>
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => scrollTo('about')}
+          onPress={() => scrollTo("about")}
         >
           <Text style={styles.tabLabel}>À propos</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => scrollTo('learning')}
+          onPress={() => scrollTo("learning")}
         >
           <Text style={styles.tabLabel}>Apprentissage</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => scrollTo('target-section')}
+          onPress={() => scrollTo("target-section")}
         >
           <Text style={styles.tabLabel}>Pour qui</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabItem}
-          onPress={() => scrollTo('mentor-section')}
+          onPress={() => scrollTo("mentor-section")}
         >
           <Text style={styles.tabLabel}>Mentor</Text>
         </TouchableOpacity>
@@ -190,95 +190,111 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 
   return (
     <>
-
       <Page hasBottom={true} style={{ paddingTop: 0 }}>
         <ScrollAnchorProvider {...methods}>
-        <ScrollView
-          ref={scrollViewRef}
-          contentContainerStyle={styles.contentContainer}
-        >
-          <Header program={program} />
-          <YStack gap={20} paddingTop={10}>
-      <Anchor name="about">
-        <YStack gap={5} id="about-section">
-          <TabSectionTitle>À propos</TabSectionTitle>
-          <TabSectionText>
-            Ce programme intensif est conçu pour transformer votre manière de
-            communiquer. En s'appuyant sur les techniques des plus grands
-            orateurs, vous apprendrez à captiver votre audience, à structurer
-            vos idées avec clarté et à utiliser votre voix pour inspirer
-            confiance. Chaque module combine théorie et exercices pratiques pour
-            une progression rapide et durable.
-          </TabSectionText>
-        </YStack>
-      </Anchor>
+          <ScrollView
+            ref={scrollViewRef}
+            contentContainerStyle={styles.contentContainer}
+          >
+            <Header program={program} />
+            <YStack gap={20} paddingTop={10}>
+              <Anchor name="about">
+                <YStack gap={5} id="about-section">
+                  <TabSectionTitle>À propos</TabSectionTitle>
+                  <TabSectionText>
+                    Ce programme intensif est conçu pour transformer votre
+                    manière de communiquer. En s'appuyant sur les techniques des
+                    plus grands orateurs, vous apprendrez à captiver votre
+                    audience, à structurer vos idées avec clarté et à utiliser
+                    votre voix pour inspirer confiance. Chaque module combine
+                    théorie et exercices pratiques pour une progression rapide
+                    et durable.
+                  </TabSectionText>
+                </YStack>
+              </Anchor>
 
-      <Anchor name="learning">
-      <YStack gap={5} id="learning-section">
-        <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
-        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-          <TabSectionText>
-            Développer une confiance inébranlable en prise de parole.
-          </TabSectionText>
-        </XStack>
-        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-          <TabSectionText>
-            Structurer des récits qui captivent et persuadent.
-          </TabSectionText>
-        </XStack>
-        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-          <TabSectionText>
-            Utiliser le langage corporel pour renforcer votre message.
-          </TabSectionText>
-        </XStack>
-        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-          <TabSectionText>
-            Adapter votre ton pour chaque type d'audience.
-          </TabSectionText>
-        </XStack>
-      </YStack>
-      </Anchor>
+              <Anchor name="learning">
+                <YStack gap={5} id="learning-section">
+                  <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
+                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+                    <AntDesign
+                      name="checkcircleo"
+                      size={24}
+                      color="rgb(176 190 165)"
+                    />
+                    <TabSectionText>
+                      Développer une confiance inébranlable en prise de parole.
+                    </TabSectionText>
+                  </XStack>
+                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+                    <AntDesign
+                      name="checkcircleo"
+                      size={24}
+                      color="rgb(176 190 165)"
+                    />
+                    <TabSectionText>
+                      Structurer des récits qui captivent et persuadent.
+                    </TabSectionText>
+                  </XStack>
+                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+                    <AntDesign
+                      name="checkcircleo"
+                      size={24}
+                      color="rgb(176 190 165)"
+                    />
+                    <TabSectionText>
+                      Utiliser le langage corporel pour renforcer votre message.
+                    </TabSectionText>
+                  </XStack>
+                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+                    <AntDesign
+                      name="checkcircleo"
+                      size={24}
+                      color="rgb(176 190 165)"
+                    />
+                    <TabSectionText>
+                      Adapter votre ton pour chaque type d'audience.
+                    </TabSectionText>
+                  </XStack>
+                </YStack>
+              </Anchor>
 
-      <Anchor name="target-section">
-      <YStack gap={5} id="target-section">
-        <TabSectionTitle>Pour qui</TabSectionTitle>
-        <TabSectionText>
-          Idéal pour les entrepreneurs, les managers, les chefs de projet, et
-          toute personne souhaitant améliorer son impact à l'oral.
-        </TabSectionText>
-      </YStack>
-      </Anchor>
+              <Anchor name="target-section">
+                <YStack gap={5} id="target-section">
+                  <TabSectionTitle>Pour qui</TabSectionTitle>
+                  <TabSectionText>
+                    Idéal pour les entrepreneurs, les managers, les chefs de
+                    projet, et toute personne souhaitant améliorer son impact à
+                    l'oral.
+                  </TabSectionText>
+                </YStack>
+              </Anchor>
 
-      <Anchor name="mentor-section">
-      <YStack gap={5} id="mentor-section">
-        <TabSectionTitle>Votre mentor</TabSectionTitle>
-        <MentorCard />
-      </YStack>
-      </Anchor>
+              <Anchor name="mentor-section">
+                <YStack gap={5} id="mentor-section">
+                  <TabSectionTitle>Votre mentor</TabSectionTitle>
+                  <MentorCard />
+                </YStack>
+              </Anchor>
 
-      <YStack
-        gap={15}
-        paddingVertical={20}
-        backgroundColor={"rgba(242, 232, 232, 1)"}
-      >
-        <TabSectionTitle>Programmes similaires</TabSectionTitle>
-        <ScrollView
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.contentContainerStyle}
-        >
-          {programs.map((e, idx) => (
-            <SimilarProgramCard key={idx} {...e} />
-          ))}
-        </ScrollView>
-      </YStack>
-    </YStack>
-
-        </ScrollView>
+              <YStack
+                gap={15}
+                paddingVertical={20}
+                backgroundColor={"rgba(242, 232, 232, 1)"}
+              >
+                <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                <ScrollView
+                  horizontal={true}
+                  showsHorizontalScrollIndicator={false}
+                  contentContainerStyle={styles.contentContainerStyle}
+                >
+                  {programs.map((e, idx) => (
+                    <SimilarProgramCard key={idx} {...e} />
+                  ))}
+                </ScrollView>
+              </YStack>
+            </YStack>
+          </ScrollView>
         </ScrollAnchorProvider>
       </Page>
       <XStack
@@ -288,6 +304,8 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
         backgroundColor={"white"}
         paddingBottom={insets.bottom}
         alignItems="center"
+        borderTopColor={"rgba(0, 0, 0, 0.1)"}
+        borderTopWidth={1}
       >
         <View flex={1}>
           <Text fontSize={18} fontFamily={"RedHatText_400Regular"}>
@@ -325,7 +343,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: "rgba(153, 77, 77, 1)",
   },
-   contentContainerStyle: {
+  contentContainerStyle: {
     gap: 20,
     paddingHorizontal: 20,
   },
