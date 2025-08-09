@@ -168,6 +168,18 @@ const SimilarProgramCard = React.memo(function (props: Program) {
 export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
   return (
     <YStack gap={20} paddingTop={10}>
+      <YStack gap={5} id="about-section">
+        <TabSectionTitle>À propos</TabSectionTitle>
+        <TabSectionText>
+          Ce programme intensif est conçu pour transformer votre manière de
+          communiquer. En s'appuyant sur les techniques des plus grands
+          orateurs, vous apprendrez à captiver votre audience, à structurer vos
+          idées avec clarté et à utiliser votre voix pour inspirer confiance.
+          Chaque module combine théorie et exercices pratiques pour une
+          progression rapide et durable.
+        </TabSectionText>
+      </YStack>
+
       <YStack gap={5} id="learning-section">
         <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
         <XStack gap={10} alignItems="center" maxWidth={"80%"}>
