@@ -19,6 +19,7 @@ import {
   RedHatText_700Bold,
 } from "@expo-google-fonts/red-hat-text";
 import Toast from "react-native-toast-message";
+import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 
 const config = createTamagui(defaultConfig);
 
@@ -45,8 +46,10 @@ export default function App() {
     <TamaguiProvider config={config}>
       <GestureHandlerRootView style={styles.container}>
         <SafeAreaProvider>
-          <Navigation />
-          <Toast position="bottom" />
+          <BottomSheetModalProvider>
+            <Navigation />
+            <Toast position="bottom" />
+          </BottomSheetModalProvider>
         </SafeAreaProvider>
       </GestureHandlerRootView>
     </TamaguiProvider>
