@@ -50,26 +50,27 @@ const SimilarProgramCard = React.memo(function (props: Program) {
   return (
     <YStack
       gap={5}
-      maxWidth={300}
-      padding={20}
+      maxWidth={250}
+      paddingVertical={15}
+      paddingHorizontal={15}
       backgroundColor={"white"}
       borderRadius={10}
     >
       {mentorGender === "men" ? (
-        <MenImagePlaceholder size={100} />
+        <MenImagePlaceholder size={80} />
       ) : (
-        <WomenImagePlaceholder size={100} />
+        <WomenImagePlaceholder size={80} />
       )}
       <Text
-        fontSize={18}
+        fontSize={16}
         fontFamily={"RedHatText_600SemiBold"}
         color={"rgba(153, 77, 77, 1)"}
       >
         {mentorName}
       </Text>
       <Text
-        fontSize={20}
-        fontFamily={"RedHatText_700Bold"}
+        fontSize={18}
+        fontFamily={"RedHatDisplay_900Black"}
         color={"rgba(0, 0, 0, 1)"}
       >
         {programName}
@@ -82,7 +83,7 @@ const SimilarProgramCard = React.memo(function (props: Program) {
         alignSelf="flex-start"
       >
         <Text
-          fontSize={16}
+          fontSize={13}
           fontFamily={"RedHatText_400Regular"}
           color={"rgba(26, 26, 26, 1)"}
         >
@@ -95,8 +96,9 @@ const SimilarProgramCard = React.memo(function (props: Program) {
 
 export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
   return (
-    <YStack gap={10} paddingVertical={20} paddingRight={10}>
-      <YStack>
+    <YStack gap={15} paddingTop={15} >
+      <YStack paddingRight={20}>
+      <YStack gap={5}>
         <TabSectionTitle>À propos</TabSectionTitle>
         <TabSectionText>
           Ce programme intensif est conçu pour transformer votre manière de
@@ -107,7 +109,7 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           progression rapide et durable.
         </TabSectionText>
       </YStack>
-      <YStack gap={10}>
+      <YStack gap={5}>
         <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
         <XStack gap={10} alignItems="center" maxWidth={'80%'}>
           <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
@@ -134,7 +136,7 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           </TabSectionText>
         </XStack>
       </YStack>
-      <YStack>
+      <YStack gap={5}>
         <TabSectionTitle>Pour qui</TabSectionTitle>
         <TabSectionText>
           Idéal pour les entrepreneurs, les managers, les chefs de projet, et
@@ -144,10 +146,10 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
           session est faite pour vous.
         </TabSectionText>
       </YStack>
-      <YStack>
+      <YStack gap={5}>
         <TabSectionTitle>Votre mentor</TabSectionTitle>
         <MentorCard />
-      </YStack>
+      </YStack></YStack>
       <YStack
         gap={15}
         paddingVertical={20}
@@ -171,5 +173,6 @@ export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
 const styles = StyleSheet.create({
   contentContainerStyle: {
     gap: 20,
+    paddingHorizontal: 20,
   },
 });

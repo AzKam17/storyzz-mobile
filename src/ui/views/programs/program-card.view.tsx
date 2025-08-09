@@ -4,20 +4,20 @@ import React from "react";
 import { styled, Text, XStack, YStack } from "tamagui";
 
 const OuterView = styled(XStack, {
-  gap: 30,
-  padding: 16,
+  gap: 5,
+  padding: 10,
   borderRadius: 12,
   backgroundColor: "white",
   marginBottom: 15,
 });
 
 const MentorTitle = styled(Text, {
-  fontSize: 16,
+  fontSize: 14,
   fontFamily: "RedHatText_600SemiBold",
   color: "rgba(153, 77, 77, 1)",
 });
 const ProgramTitle = styled(Text, {
-  fontSize: 18,
+  fontSize: 17,
   fontFamily: "RedHatDisplay_900Black",
   color: "rgba(0, 0, 0, 1)",
 });
@@ -37,8 +37,6 @@ const Tag = styled(Text, {
   borderRadius: 12,
   backgroundColor: "rgba(242, 232, 232, 1)",
 });
-
-
 
 type Props = {
   id: number;
@@ -68,9 +66,9 @@ export const ProgramCardView = React.memo(function (props: Props) {
     <OuterView onPress={goToProgramDetail}>
       <YStack flex={1} justifyContent="center">
         {mentorGender === "men" ? (
-          <MenImagePlaceholder />
+          <MenImagePlaceholder size={80} />
         ) : (
-          <WomenImagePlaceholder />
+          <WomenImagePlaceholder size={80} />
         )}
       </YStack>
       <YStack flex={3} gap={5}>

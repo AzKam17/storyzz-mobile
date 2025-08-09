@@ -1,3 +1,4 @@
+import { usePlatform } from "@/hooks";
 import Fontisto from "@expo/vector-icons/Fontisto";
 import React from "react";
 import { Pressable, StyleSheet, TextInput, TextInputProps } from "react-native";
@@ -5,6 +6,7 @@ import { View } from "tamagui";
 import CancelSvg from "~/svg/CancelSvg";
 
 export const SearchBarInput = React.memo(function (props: TextInputProps) {
+  const {isIos} = usePlatform()
   const [focused, setFocused] = React.useState<boolean>(false);
 
   const clearInput = React.useCallback(function () {
@@ -38,11 +40,11 @@ export const SearchBarInput = React.memo(function (props: TextInputProps) {
       backgroundColor={"white"}
       alignItems="center"
       paddingHorizontal={15}
-      paddingVertical={10}
+      paddingVertical={isIos ? 15: 0}
       borderColor={viewColor}
       borderWidth={1.5}
     >
-      <Fontisto name="zoom" size={24} color={iconColor} />
+      <Fontisto name="zoom" size={18} color={iconColor} />
       <View flex={1}>
         <TextInput
           onFocus={onFocus}

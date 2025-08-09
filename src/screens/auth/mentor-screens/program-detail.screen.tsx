@@ -33,11 +33,13 @@ import { useAnimatedReaction } from "react-native-reanimated";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
+  color: 'rgba(0, 0, 0, 1)',
   fontFamily: "RedHatText_700Bold",
 });
 
 const ProgramDescriptionText = styled(Text, {
-  fontSize: 20,
+  fontSize: 17,
+  color: 'rgba(74, 74, 74, 1)',
   fontFamily: "RedHatText_400Regular",
 });
 
@@ -108,7 +110,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
   const Header = React.useCallback(
     function ({ program }: { program: Program }) {
       return (
-        <YStack gap={13} paddingRight={20}>
+        <YStack gap={20} paddingRight={20}>
           <Image
             source={require("~/images/default-image-women-large.png")}
             style={{ width: "100%", height: 215, borderRadius: 10 }}
@@ -117,7 +119,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           <ProgramDescriptionText>
             {program.programDescription}
           </ProgramDescriptionText>
-          <XStack justifyContent="space-between">
+          <XStack justifyContent="space-between" alignItems="center">
             <XStack gap={10}>
               {program.mentorGender === "men" ? (
                 <MenImagePlaceholder size={40} />
@@ -166,7 +168,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 
   return (
     <>
-      <Page hasBottom={true} style={{ paddingTop: 0 }}>
+      <Page hasBottom={true} style={{ paddingTop: 0,}}>
         <Tabs.Container
           headerContainerStyle={{
             shadowColor: "rgba(0, 0, 0, 0)",
@@ -191,7 +193,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   backgroundColor: "rgba(0, 0, 0, 1)",
                 }}
                 labelStyle={{
-                  fontFamily: "RedHatText_400Regular",
+                  fontFamily: "RedHatText_700Bold",
                 }}
               />
             );

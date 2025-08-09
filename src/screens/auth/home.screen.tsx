@@ -8,15 +8,14 @@ import { programs } from "@/utils";
 import { FlashList } from "@shopify/flash-list";
 import React from "react";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { YStack } from "tamagui";
 
-
-
-export const HomeScreen = React.memo(function(){
-    const insets = useSafeAreaInsets();
+export const HomeScreen = React.memo(function () {
+  const insets = useSafeAreaInsets();
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [tagList, setTagList] = React.useState<string[]>([]);
 
-    const listValues = React.useMemo(
+  const listValues = React.useMemo(
     function () {
       const e = searchValue.toLowerCase();
       let filteredPrograms = programs;
@@ -52,15 +51,21 @@ export const HomeScreen = React.memo(function(){
   return (
     <Page hasBottom={true}>
       <PageTitleText>Programes</PageTitleText>
-      <SearchBarInput value={searchValue} onChangeText={setSearchValue} />
-      <PillButtonList values={tagList} setValuesList={setTagList} />
       <FlashList
         data={listValues}
-        renderItem={({ item, index }) => <ProgramCardView id={index} {...item} />}
+        ListHeaderComponent={
+          <YStack gap={5} paddingBottom={10}>
+            <SearchBarInput value={searchValue} onChangeText={setSearchValue} />
+            <PillButtonList values={tagList} setValuesList={setTagList} />
+          </YStack>
+        }
+        renderItem={({ item, index }) => (
+          <ProgramCardView id={index} {...item} />
+        )}
         ListEmptyComponent={<NoContentSearchView onPress={clearSearch} />}
         estimatedItemSize={300}
         showsVerticalScrollIndicator={false}
       />
     </Page>
   );
-})
+});

@@ -1,4 +1,4 @@
-import { useIsSignedOut, useIsSignedIn } from "@/hooks/auth";
+import { useIsSignedOut, useIsSignedIn } from "@/hooks";
 import { AuthNavigator } from "@/navigators/auth.navigator";
 import { UnAuthNavigator } from "@/navigators/unauth.navigator";
 
