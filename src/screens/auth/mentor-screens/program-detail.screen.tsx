@@ -4,32 +4,21 @@ import { StaticScreenProps, useNavigation } from "@react-navigation/native";
 import { styled, Text, View } from "@tamagui/core";
 import React from "react";
 import { Program } from "../../../../types";
-import { ScrollView, XStack, YStack } from "tamagui";
-import { SceneMap, TabBar, TabView } from "react-native-tab-view";
-import { StyleSheet, useWindowDimensions } from "react-native";
+import { ScrollView, XStack, YStack, Image } from "tamagui";
 import { ProgramDetailAboutScreen } from "@/screens/auth/mentor-screens/program-detail-about.screen";
-import { ProgramDetailMentorScreen } from "@/screens/auth/mentor-screens/program-detail-mentor.screen";
-import { ProgramDetailScheduleScreen } from "@/screens/auth/mentor-screens/program-detail-schedule.screen";
-import { ProgramDetailTargetUsersScreen } from "@/screens/auth/mentor-screens/program-detail-target-users.screen";
-import {
-  MenImagePlaceholder,
-  WomenImagePlaceholder,
-} from "@/ui/views/programs/mentor-image-placeholder.view";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import {
-  MaterialTabBar,
-  Tabs,
-  useCurrentTabScrollY,
-} from "react-native-collapsible-tab-view";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { PrimaryButton } from "@/ui/buttons";
-import { Image } from "expo-image";
+//import { Image } from "expo-image";
 import HeartSvg from "~/svg/HeartSvg";
 import ClockSvg from "~/svg/ClockSvg";
 import CameraSvg from "~/svg/CameraSvg";
 import BookOpenSvg from "~/svg/BookOpenSvg";
 import PersonGroupSvg from "~/svg/PersonGroupSvg";
-import { useAnimatedReaction } from "react-native-reanimated";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { TouchableOpacity, StyleSheet } from "react-native";
+import {
+  MenImagePlaceholder,
+  WomenImagePlaceholder,
+} from "@/ui/views/programs/mentor-image-placeholder.view";
+import { PrimaryButton } from "@/ui/buttons";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -69,11 +58,15 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
   const { programId } = props.route.params;
-  const [index, setIndex] = React.useState(0);
   const [program, setProgram] = React.useState<Program>();
+  const scrollViewRef = React.useRef<ScrollView>(null);
 
-  // Position where the program title is located (approximately)
-  const PROGRAM_TITLE_POSITION = 280; // Adjust based on your layout
+  // Section positions - you'll need to adjust these based on your layout
+  const SECTION_POSITIONS = {
+    learning: 400, // Position of "Ce que vous apprendrez"
+    target: 800, // Position of "Pour qui"
+    mentor: 1200, // Position of "Votre mentor"
+  };
 
   React.useEffect(() => {
     const { programId } = props.route.params;
@@ -88,29 +81,50 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
     });
   }, [program]);
 
-  const ScrollTracker = React.memo(() => {
-    const scrollY = useCurrentTabScrollY();
+  const scrollToSection = React.useCallback((position: number) => {
+    scrollViewRef.current?.scrollTo({
+      y: position,
+      animated: true,
+    });
+  }, []);
 
-    useAnimatedReaction(
-      () => scrollY.value,
-      (currentScrollY) => {
-        if (currentScrollY >= PROGRAM_TITLE_POSITION) {
-          console.log("🎯 Program title reached the screen header!", {
-            scrollY: currentScrollY,
-            titlePosition: PROGRAM_TITLE_POSITION,
-            programName: program?.programName,
-          });
-        }
-      }
+  const AnchorTabBar = React.memo(() => {
+    return (
+      <View style={styles.tabBar}>
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => scrollToSection(SECTION_POSITIONS.learning)}
+        >
+          <Text style={styles.tabLabel}>À propos</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => scrollToSection(SECTION_POSITIONS.learning)}
+        >
+          <Text style={styles.tabLabel}>Apprentissage</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => scrollToSection(SECTION_POSITIONS.target)}
+        >
+          <Text style={styles.tabLabel}>Pour qui</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabItem}
+          onPress={() => scrollToSection(SECTION_POSITIONS.mentor)}
+        >
+          <Text style={styles.tabLabel}>Mentor</Text>
+        </TouchableOpacity>
+      </View>
     );
-
-    return null;
   });
 
   const Header = React.useCallback(
     function ({ program }: { program: Program }) {
       return (
-        <YStack gap={20} paddingRight={20}>
+        <YStack gap={20} paddingVertical={15}>
           <Image
             source={require("~/images/default-image-women-large.png")}
             style={{ width: "100%", height: 215, borderRadius: 10 }}
@@ -133,7 +147,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             </XStack>
             <XStack gap={5}>
               <HeartSvg />
-              <MiscText>700</MiscText>
+              <MiscText>4.8</MiscText>
             </XStack>
           </XStack>
           <XStack gap={20}>
@@ -169,66 +183,15 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
   return (
     <>
       <Page hasBottom={true} style={{ paddingTop: 0 }}>
-        <Tabs.Container
-          headerContainerStyle={{
-            shadowColor: "rgba(0, 0, 0, 0)",
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            backgroundColor: "rgba(247, 243, 238, 1)",
-          }}
-          renderHeader={() => <Header program={program} />}
-          headerHeight={300}
-          renderTabBar={(props) => {
-            return (
-              <MaterialTabBar
-                {...props}
-                activeColor="rgba(74, 74, 74, 1)"
-                inactiveColor="rgba(153, 77, 77, 1)"
-                scrollEnabled={true}
-                indicatorStyle={{
-                  backgroundColor: "rgba(0, 0, 0, 1)",
-                }}
-                labelStyle={{
-                  fontFamily: "RedHatText_700Bold",
-                }}
-              />
-            );
-          }}
+        <ScrollView
+          ref={scrollViewRef}
+          contentContainerStyle={styles.contentContainer}
         >
-          <Tabs.Tab name="A" label="A propos">
-            <Tabs.ScrollView>
-              <ScrollTracker />
-              <ProgramDetailAboutScreen programId={programId} />
-            </Tabs.ScrollView>
-          </Tabs.Tab>
-
-          <Tabs.Tab name="B" label="Apprentissage">
-            <Tabs.ScrollView>
-              <ScrollTracker />
-              <ProgramDetailScheduleScreen programId={programId} />
-            </Tabs.ScrollView>
-          </Tabs.Tab>
-
-          <Tabs.Tab name="C" label="Pour qui">
-            <Tabs.ScrollView>
-              <ScrollTracker />
-              <ProgramDetailTargetUsersScreen programId={programId} />
-            </Tabs.ScrollView>
-          </Tabs.Tab>
-
-          <Tabs.Tab name="D" label="Mentor">
-            <Tabs.ScrollView>
-              <ScrollTracker />
-              <ProgramDetailMentorScreen programId={programId} />
-            </Tabs.ScrollView>
-          </Tabs.Tab>
-        </Tabs.Container>
+          <Header program={program} />
+          <AnchorTabBar />
+          <ProgramDetailAboutScreen programId={programId} />
+        </ScrollView>
       </Page>
-
       <XStack
         gap={10}
         padding={10}
@@ -256,8 +219,23 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 });
 
 const styles = StyleSheet.create({
-  contentContainerStyle: {
-    gap: 15,
-    paddingBottom: 20,
+  contentContainer: {},
+  tabBar: {
+    width: "100%",
+    flexDirection: "row",
+    backgroundColor: "rgba(247, 243, 238, 1)",
+    justifyContent: "space-around",
+    borderBottomWidth: 1,
+    borderBottomColor: "rgba(0, 0, 0, 0.1)",
+  },
+  tabItem: {
+    //flex:1,
+    paddingVertical: 10,
+    //paddingHorizontal: 16,
+  },
+  tabLabel: {
+    fontFamily: "RedHatText_700Bold",
+    fontSize: 14,
+    color: "rgba(153, 77, 77, 1)",
   },
 });

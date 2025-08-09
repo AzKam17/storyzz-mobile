@@ -167,60 +167,46 @@ const SimilarProgramCard = React.memo(function (props: Program) {
 
 export const ProgramDetailAboutScreen = React.memo(function (props: Props) {
   return (
-    <YStack gap={15} paddingTop={15}>
-      <YStack paddingRight={20}>
-        <YStack gap={5}>
-          <TabSectionTitle>À propos</TabSectionTitle>
+    <YStack gap={20} paddingTop={10}>
+      <YStack gap={5} id="learning-section">
+        <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
+        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
           <TabSectionText>
-            Ce programme intensif est conçu pour transformer votre manière de
-            communiquer. En s'appuyant sur les techniques des plus grands
-            orateurs, vous apprendrez à captiver votre audience, à structurer
-            vos idées avec clarté et à utiliser votre voix pour inspirer
-            confiance. Chaque module combine théorie et exercices pratiques pour
-            une progression rapide et durable.
+            Développer une confiance inébranlable en prise de parole.
           </TabSectionText>
-        </YStack>
-        <YStack gap={5}>
-          <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
-          <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-            <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-            <TabSectionText>
-              Développer une confiance inébranlable en prise de parole.
-            </TabSectionText>
-          </XStack>
-          <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-            <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-            <TabSectionText>
-              Structurer des récits qui captivent et persuadent.
-            </TabSectionText>
-          </XStack>
-          <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-            <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-            <TabSectionText>
-              Utiliser le langage corporel pour renforcer votre message.
-            </TabSectionText>
-          </XStack>
-          <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-            <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
-            <TabSectionText>
-              Adapter votre ton pour chaque type d'audience.
-            </TabSectionText>
-          </XStack>
-        </YStack>
-        <YStack gap={5}>
-          <TabSectionTitle>Pour qui</TabSectionTitle>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
           <TabSectionText>
-            Idéal pour les entrepreneurs, les managers, les chefs de projet, et
-            toute personne souhaitant améliorer son impact à l'oral. Que vous
-            prépariez une présentation cruciale, un pitch pour des investisseurs
-            ou que vous vouliez simplement être plus à l'aise en réunion, cette
-            session est faite pour vous.
+            Structurer des récits qui captivent et persuadent.
           </TabSectionText>
-        </YStack>
-        <YStack gap={5}>
-          <TabSectionTitle>Votre mentor</TabSectionTitle>
-          <MentorCard />
-        </YStack>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Utiliser le langage corporel pour renforcer votre message.
+          </TabSectionText>
+        </XStack>
+        <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+          <AntDesign name="checkcircleo" size={24} color="rgb(176 190 165)" />
+          <TabSectionText>
+            Adapter votre ton pour chaque type d'audience.
+          </TabSectionText>
+        </XStack>
+      </YStack>
+      
+      <YStack gap={5} id="target-section">
+        <TabSectionTitle>Pour qui</TabSectionTitle>
+        <TabSectionText>
+          Idéal pour les entrepreneurs, les managers, les chefs de projet, et
+          toute personne souhaitant améliorer son impact à l'oral.
+        </TabSectionText>
+      </YStack>
+      
+      <YStack gap={5} id="mentor-section">
+        <TabSectionTitle>Votre mentor</TabSectionTitle>
+        <MentorCard />
       </YStack>
       <YStack
         gap={15}
