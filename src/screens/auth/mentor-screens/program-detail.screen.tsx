@@ -23,9 +23,10 @@ import {
   useScrollAnchor,
 } from "@sellpy/react-native-scroll-anchor";
 import { TabSectionTitle, TabSectionText } from "@/ui/texts";
-import { MentorCard } from "@/ui/views/mentor";
+import { MentorCard, MentorCardAlt1 } from "@/ui/views/mentor";
 import { SimilarProgramCard } from "@/ui/views/programs/similar-program-card.view";
 import { AntDesign } from "@expo/vector-icons";
+import { RandomChildView } from "@/ui/views/misc";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -273,7 +274,10 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               <Anchor name="mentor-section">
                 <YStack gap={5} id="mentor-section">
                   <TabSectionTitle>Votre mentor</TabSectionTitle>
-                  <MentorCard />
+                  <RandomChildView>
+                    <MentorCard />
+                    <MentorCardAlt1 />
+                  </RandomChildView>
                 </YStack>
               </Anchor>
 

@@ -9,7 +9,9 @@ import * as SplashScreen from "expo-splash-screen";
 //4.1.2
 import { TamaguiProvider, createTamagui } from "tamagui";
 import {
+  RedHatDisplay_500Medium,
   RedHatDisplay_900Black,
+  RedHatDisplay_700Bold,
   useFonts,
 } from "@expo-google-fonts/red-hat-display";
 import {
@@ -30,6 +32,8 @@ export default function App() {
     RedHatDisplay_900Black,
     RedHatText_500Medium,
     RedHatText_700Bold,
+    RedHatDisplay_500Medium,
+    RedHatDisplay_700Bold
   });
 
   React.useEffect(() => {
