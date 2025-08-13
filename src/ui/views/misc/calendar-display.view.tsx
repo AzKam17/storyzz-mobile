@@ -5,7 +5,9 @@ import { Pressable } from "react-native";
 import moment, { Moment } from "moment";
 import "moment/locale/fr";
 
-interface Props {}
+interface Props {
+    onChange?: (date: Moment) => void;
+}
 
 const DayText = styled(Text, {
   color: "rgb(107, 114, 128)",
@@ -45,7 +47,7 @@ const capitalizeFirstLetter = (string: string) => {
   return string.charAt(0).toUpperCase() + string.slice(1);
 };
 
-export const CalendarDisplayView = React.memo(function ({}: Props) {
+export const CalendarDisplayView = React.memo(function ({ onChange }: Props) {
   moment.locale("fr");
   const [month, setMonth] = React.useState(moment().month());
   const [year, setYear] = React.useState(moment().year());
@@ -73,6 +75,9 @@ export const CalendarDisplayView = React.memo(function ({}: Props) {
 
   const handleDayPress = (date: Moment) => {
     setSelectedDate(date);
+    if (onChange) {
+      onChange(date);
+    }
   };
 
   const generateCalendarDays = () => {
