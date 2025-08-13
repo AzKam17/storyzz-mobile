@@ -28,6 +28,7 @@ import { SimilarProgramCard } from "@/ui/views/programs/similar-program-card.vie
 import { AntDesign } from "@expo/vector-icons";
 import { RandomChildView } from "@/ui/views/misc";
 import { LearnerFeedbackViewCarousel } from "@/ui/views/learner";
+import { SimilarProgramsAlt1 } from "@/ui/views/programs";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -283,28 +284,38 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               </Anchor>
 
               {/* <RandomChildView> */}
-                <YStack gap={5} id="mentor-section">
-                  <TabSectionTitle>Retour des apprenants</TabSectionTitle>
-                  <LearnerFeedbackViewCarousel />
-                </YStack>
+              <YStack gap={5} id="mentor-section">
+                <TabSectionTitle>Retour des apprenants</TabSectionTitle>
+                <LearnerFeedbackViewCarousel />
+              </YStack>
               {/* </RandomChildView> */}
 
-              <YStack
-                gap={15}
-                paddingVertical={20}
-                backgroundColor={"rgba(242, 232, 232, 1)"}
-              >
-                <TabSectionTitle>Programmes similaires</TabSectionTitle>
-                <ScrollView
-                  horizontal={true}
-                  showsHorizontalScrollIndicator={false}
-                  contentContainerStyle={styles.contentContainerStyle}
-                >
-                  {programs.map((e, idx) => (
-                    <SimilarProgramCard key={idx} {...e} />
-                  ))}
-                </ScrollView>
-              </YStack>
+              <RandomChildView>
+                <>
+                  <YStack
+                    gap={15}
+                    paddingVertical={20}
+                    backgroundColor={"rgba(242, 232, 232, 1)"}
+                  >
+                    <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                    <ScrollView
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                      contentContainerStyle={styles.contentContainerStyle}
+                    >
+                      {programs.map((e, idx) => (
+                        <SimilarProgramCard key={idx} {...e} />
+                      ))}
+                    </ScrollView>
+                  </YStack>
+                </>
+                <>
+                  <YStack gap={5} paddingVertical={20}>
+                    <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                    <SimilarProgramsAlt1 />
+                  </YStack>
+                </>
+              </RandomChildView>
             </YStack>
           </ScrollView>
         </ScrollAnchorProvider>
