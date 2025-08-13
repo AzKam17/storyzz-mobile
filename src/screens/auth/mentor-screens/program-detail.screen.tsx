@@ -218,7 +218,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
                   <XStack gap={10} alignItems="center" maxWidth={"80%"}>
                     <AntDesign
-                      name="checkcircleo"
+                      name="checkcircle"
                       size={24}
                       color="rgb(176 190 165)"
                     />
@@ -228,7 +228,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   </XStack>
                   <XStack gap={10} alignItems="center" maxWidth={"80%"}>
                     <AntDesign
-                      name="checkcircleo"
+                      name="checkcircle"
                       size={24}
                       color="rgb(176 190 165)"
                     />
@@ -238,7 +238,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   </XStack>
                   <XStack gap={10} alignItems="center" maxWidth={"80%"}>
                     <AntDesign
-                      name="checkcircleo"
+                      name="checkcircle"
                       size={24}
                       color="rgb(176 190 165)"
                     />
@@ -248,7 +248,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   </XStack>
                   <XStack gap={10} alignItems="center" maxWidth={"80%"}>
                     <AntDesign
-                      name="checkcircleo"
+                      name="checkcircle"
                       size={24}
                       color="rgb(176 190 165)"
                     />
