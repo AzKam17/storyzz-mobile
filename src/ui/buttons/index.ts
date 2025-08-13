@@ -1,3 +1,5 @@
 export * from './primary.button'
 export * from './pill.button'
 export * from './pill.button.list'
+export * from './user-profile.button'
+export * from './logout.button'
