@@ -9,7 +9,7 @@ const Header = React.memo(function () {
   return (
     <XStack alignItems="center" justifyContent="space-between">
       <XStack gap={10} alignItems="center">
-        <Avatar circular size="$6">
+        <Avatar circular size="$4">
           <Avatar.Image src={require("~/images/avatar3.png")} />
         </Avatar>
         <Text fontSize={18} fontFamily={"RedHatDisplay_700Bold"}>
@@ -34,10 +34,10 @@ const SearchBar = React.memo(function () {
       <XStack gap={5}>
         <View flex={1}>
           <Input
-            placeholder="Ex: 'Je veux être plus convaincant...'"
+            placeholder="Ex: 'Je veux être plus convaincant...'" 
             backgroundColor={"#f0f0f0"}
             borderColor={"#e5e7eb"}
-            borderWidth={"0.25"}
+            borderWidth={0.25} 
           />
         </View>
         <View

@@ -109,7 +109,7 @@ export const LoginScreen = React.memo(function () {
         <SigninMessage
           onPress={() => navigation.navigate("unauth", { screen: "sign_in" })}
         >
-          Nouveau sur Storyzz ?{" "}
+          Nouveau sur Storyzz ?
           <SigninMessageBolg>Créer un compte</SigninMessageBolg>
         </SigninMessage>
         <PrimaryButton disabled={!isValid} onPress={handleSubmit(submit)}>
