@@ -13,6 +13,7 @@ import {
   RedHatDisplay_900Black,
   RedHatDisplay_700Bold,
   RedHatDisplay_400Regular,
+  RedHatDisplay_300Light,
   useFonts,
 } from "@expo-google-fonts/red-hat-display";
 import {
@@ -35,7 +36,8 @@ export default function App() {
     RedHatText_700Bold,
     RedHatDisplay_500Medium,
     RedHatDisplay_700Bold,
-    RedHatDisplay_400Regular
+    RedHatDisplay_400Regular,
+    RedHatDisplay_300Light
   });
 
   React.useEffect(() => {
