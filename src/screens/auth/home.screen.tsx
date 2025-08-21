@@ -3,6 +3,7 @@ import { MaterialIcons, SimpleLineIcons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { View, Text, Avatar, XStack, YStack, Input } from "tamagui";
+import { CommonActions } from "@react-navigation/native";
 import FlowerPotSvg from "~/svg/FlowerPotSvg";
 
 const Header = React.memo(function () {
@@ -34,10 +35,10 @@ const SearchBar = React.memo(function () {
       <XStack gap={5}>
         <View flex={1}>
           <Input
-            placeholder="Ex: 'Je veux être plus convaincant...'" 
+            placeholder="Ex: 'Je veux être plus convaincant...'"
             backgroundColor={"#f0f0f0"}
             borderColor={"#e5e7eb"}
-            borderWidth={0.25} 
+            borderWidth={0.25}
           />
         </View>
         <View
@@ -59,10 +60,7 @@ export const HomeScreen = React.memo(function () {
 
   const goToPrograms = React.useCallback(
     function () {
-      navigation.navigate("auth", {
-        screen: "bottom_navigator",
-        params: { screen: "mentor" },
-      });
+      navigation.dispatch(CommonActions.navigate({ name: "Mentor" }));
     },
     [navigation]
   );
@@ -74,7 +72,7 @@ export const HomeScreen = React.memo(function () {
       <View flex={1}>
         <FlowerPotSvg />
       </View>
-      <YStack gap={15} paddingHorizontal={20}>
+      <YStack gap={15} paddingHorizontal={20} paddingVertical={10}>
         <Text
           textAlign="center"
           fontSize={25}
