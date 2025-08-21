@@ -24,6 +24,7 @@ import {
 } from "@expo-google-fonts/red-hat-text";
 import Toast from "react-native-toast-message";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 
 const config = createTamagui(defaultConfig);
 
@@ -37,7 +38,7 @@ export default function App() {
     RedHatDisplay_500Medium,
     RedHatDisplay_700Bold,
     RedHatDisplay_400Regular,
-    RedHatDisplay_300Light
+    RedHatDisplay_300Light,
   });
 
   React.useEffect(() => {
@@ -51,16 +52,18 @@ export default function App() {
   }
 
   return (
-    <TamaguiProvider config={config}>
-      <GestureHandlerRootView style={styles.container}>
-        <SafeAreaProvider>
-          <BottomSheetModalProvider>
-            <Navigation />
-            <Toast position="bottom" />
-          </BottomSheetModalProvider>
-        </SafeAreaProvider>
-      </GestureHandlerRootView>
-    </TamaguiProvider>
+    <KeyboardProvider>
+      <TamaguiProvider config={config}>
+        <GestureHandlerRootView style={styles.container}>
+          <SafeAreaProvider>
+            <BottomSheetModalProvider>
+              <Navigation />
+              <Toast position="bottom" />
+            </BottomSheetModalProvider>
+          </SafeAreaProvider>
+        </GestureHandlerRootView>
+      </TamaguiProvider>
+    </KeyboardProvider>
   );
 }
 
