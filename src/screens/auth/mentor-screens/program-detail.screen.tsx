@@ -29,7 +29,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { RandomChildView } from "@/ui/views/misc";
 import { LearnerFeedbackViewCarousel } from "@/ui/views/learner";
 import { SimilarProgramsAlt1 } from "@/ui/views/programs";
-import { PayButton } from "@/ui/buttons/pay.button";
+import { ProgramPayButton } from "@/ui/buttons";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -340,7 +340,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           </Text>
         </View>
         <View flex={1}>
-          <PayButton showToast={true} />
+          <ProgramPayButton programId={programId} />
         </View>
       </XStack>
     </>

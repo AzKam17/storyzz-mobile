@@ -1,5 +1,5 @@
 import React from "react";
-import {ViewStyle, StyleProp } from "react-native";
+import {ViewStyle, StyleProp, Text } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { styled, YStack } from "tamagui";
 
@@ -26,7 +26,7 @@ export const Page = React.memo(function ({
       paddingBottom={hasBottom ? 0 : insets.bottom}
       style={[{flex: 1},style]}
     >
-      {children || <></>}
+      {children}
     </CPage>
   );
 });
