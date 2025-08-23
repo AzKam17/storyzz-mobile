@@ -140,6 +140,8 @@ export const ProgramPayButton = React.memo(function ({
       </BottomSheetModal>
 
       <BottomSheetModal
+        keyboardBehavior="interactive"
+        keyboardBlurBehavior="restore"
         ref={pgPaySheetModalRef}
         handleComponent={null}
         backdropComponent={BottomSheetBackdropView}
@@ -174,6 +176,7 @@ export const ProgramPayButton = React.memo(function ({
                 display={paymentMethod === "mobile" ? "flex" : "none"}
               >
                 <Input1
+                  bottomSheet={true}
                   label="Numéro de téléphone"
                   placeholder="  07 00 00 00 00"
                   multiline={false}
@@ -185,17 +188,24 @@ export const ProgramPayButton = React.memo(function ({
                 display={paymentMethod === "card" ? "flex" : "none"}
               >
                 <Input1
+                  bottomSheet={true}
                   label="Numéro de carte"
                   placeholder="  0000 0000 0000 0000"
                   multiline={false}
                 />
                 <XStack gap={10}>
                   <Input1
+                    bottomSheet={true}
                     label="Expiration"
                     placeholder="  MM/AA"
                     multiline={false}
                   />
-                  <Input1 label="CVC" placeholder="  123" multiline={false} />
+                  <Input1
+                    bottomSheet={true}
+                    label="CVC"
+                    placeholder="  123"
+                    multiline={false}
+                  />
                 </XStack>
               </YStack>
             </View>
@@ -207,6 +217,8 @@ export const ProgramPayButton = React.memo(function ({
       </BottomSheetModal>
 
       <BottomSheetModal
+        keyboardBehavior="interactive"
+        keyboardBlurBehavior="restore"
         ref={pgSuccessSheetModalRef}
         handleComponent={null}
         backdropComponent={BottomSheetBackdropView}
