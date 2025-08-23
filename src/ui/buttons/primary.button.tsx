@@ -20,7 +20,7 @@ export const PButtonFrame = styled(View, {
 export const PButtonText = styled(Text, {
   name: 'ButtonText',
   color: 'rgba(255, 255, 255, 1)',
-  fontFamily: 'RedHatText_400Regular',
+  fontFamily: 'RedHatText_700Bold',
 })
 
 export const PrimaryButton = withStaticProperties(PButtonFrame, {
