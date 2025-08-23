@@ -40,6 +40,7 @@ export const ProgramPayButton = React.memo(function ({
   }, []);
 
   const showPaySheet = React.useCallback(function () {
+    setStep(1);
     pgDescSheetModalRef.current?.close();
 
     const timer = setTimeout(() => {
@@ -50,6 +51,7 @@ export const ProgramPayButton = React.memo(function ({
   }, []);
 
   const showSuccessSheet = React.useCallback(function () {
+    setStep(2);
     pgPaySheetModalRef.current?.close();
 
     const timer = setTimeout(() => {
@@ -196,7 +198,12 @@ export const ProgramPayButton = React.memo(function ({
         <BottomSheetView style={{ flex: 1 }}>
           <SheetContainerView gap={15}>
             <SheetCloseButton onPress={closeSheet} />
-            <View backgroundColor={"#e0f3ec"} alignSelf="center" padding={20} borderRadius={100}>
+            <View
+              backgroundColor={"#e0f3ec"}
+              alignSelf="center"
+              padding={20}
+              borderRadius={100}
+            >
               <View backgroundColor={"#34c759"} padding={10} borderRadius={100}>
                 <FontAwesome5 name="check" size={24} color="white" />
               </View>
@@ -209,15 +216,17 @@ export const ProgramPayButton = React.memo(function ({
               </SheetText>
             </YStack>
             <YStack gap={10}>
-            <PrimaryButton onPress={showPaySheet}>
-              <PrimaryButton.Text>Retourner à l'accueil</PrimaryButton.Text>
-            </PrimaryButton>
-            <SecondaryButton>
-              <SecondaryButton.Icon>
-                <FontAwesome name="calendar-o" />
-              </SecondaryButton.Icon>
-              <SecondaryButton.Text>Ajouter au calendrier</SecondaryButton.Text>
-            </SecondaryButton>
+              <PrimaryButton onPress={showPaySheet}>
+                <PrimaryButton.Text>Retourner à l'accueil</PrimaryButton.Text>
+              </PrimaryButton>
+              <SecondaryButton>
+                <SecondaryButton.Icon>
+                  <FontAwesome name="calendar-o" />
+                </SecondaryButton.Icon>
+                <SecondaryButton.Text>
+                  Ajouter au calendrier
+                </SecondaryButton.Text>
+              </SecondaryButton>
             </YStack>
           </SheetContainerView>
         </BottomSheetView>
