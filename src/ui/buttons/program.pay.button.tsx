@@ -7,6 +7,7 @@ import { Entypo, Feather, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { FormInput, Input1 } from "@/ui/inputs";
 import { PaymentButton } from "@/ui/buttons/payment-method.button";
 import { SecondaryButton } from "@/ui/buttons/secondary.button";
+import { useNavigation } from "@react-navigation/native";
 
 export interface PayButtonProps {
   programId: string;
@@ -18,6 +19,7 @@ export const ProgramPayButton = React.memo(function ({
   amount,
   showToast,
 }: PayButtonProps) {
+  const navigation = useNavigation();
   const [step, setStep] = React.useState<0 | 1 | 2>(0);
   const [paymentMethod, setPaymentMethod] = React.useState<"mobile" | "card">(
     "mobile"
@@ -76,6 +78,20 @@ export const ProgramPayButton = React.memo(function ({
     },
     [step]
   );
+
+  const goToHomePage = React.useCallback(function () {
+    setStep(0);
+    pgSuccessSheetModalRef?.current?.close();
+
+    const timer = setTimeout(() => {
+      navigation.navigate("auth", {
+        screen: "bottom_navigator",
+        params: { screen: "home" },
+      });
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -216,7 +232,7 @@ export const ProgramPayButton = React.memo(function ({
               </SheetText>
             </YStack>
             <YStack gap={10}>
-              <PrimaryButton onPress={showPaySheet}>
+              <PrimaryButton onPress={goToHomePage}>
                 <PrimaryButton.Text>Retourner à l'accueil</PrimaryButton.Text>
               </PrimaryButton>
               <SecondaryButton>
