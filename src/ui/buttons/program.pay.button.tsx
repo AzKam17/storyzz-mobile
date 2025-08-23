@@ -3,9 +3,10 @@ import { styled, Text, View, XStack, YStack } from "tamagui";
 import { BottomSheetBackdropView } from "@/ui/views/misc/bottom-sheet-backdrop.view";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import React from "react";
-import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
+import { Entypo, Feather, FontAwesome, FontAwesome5 } from "@expo/vector-icons";
 import { FormInput, Input1 } from "@/ui/inputs";
 import { PaymentButton } from "@/ui/buttons/payment-method.button";
+import { SecondaryButton } from "@/ui/buttons/secondary.button";
 
 export interface PayButtonProps {
   programId: string;
@@ -18,9 +19,9 @@ export const ProgramPayButton = React.memo(function ({
   showToast,
 }: PayButtonProps) {
   const [step, setStep] = React.useState<0 | 1 | 2>(0);
-  const [paymentMethod, setPaymentMethod] = React.useState<
-    "mobile" | "card" | null
-  >(null);
+  const [paymentMethod, setPaymentMethod] = React.useState<"mobile" | "card">(
+    "mobile"
+  );
   const pgDescSheetModalRef = React.useRef<BottomSheetModal>(null);
   const pgPaySheetModalRef = React.useRef<BottomSheetModal>(null);
   const pgSuccessSheetModalRef = React.useRef<BottomSheetModal>(null);
@@ -43,6 +44,16 @@ export const ProgramPayButton = React.memo(function ({
 
     const timer = setTimeout(() => {
       pgPaySheetModalRef.current?.present();
+    }, 700);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const showSuccessSheet = React.useCallback(function () {
+    pgPaySheetModalRef.current?.close();
+
+    const timer = setTimeout(() => {
+      pgSuccessSheetModalRef.current?.present();
     }, 700);
 
     return () => clearTimeout(timer);
@@ -166,17 +177,48 @@ export const ProgramPayButton = React.memo(function ({
                     placeholder="  MM/AA"
                     multiline={false}
                   />
-                  <Input1
-                    label="CVC"
-                    placeholder="  123"
-                    multiline={false}
-                  />
+                  <Input1 label="CVC" placeholder="  123" multiline={false} />
                 </XStack>
               </YStack>
             </View>
-            <PrimaryButton onPress={() => {}}>
+            <PrimaryButton onPress={showSuccessSheet}>
               <PrimaryButton.Text>Payer 50 000 Fcfa</PrimaryButton.Text>
             </PrimaryButton>
+          </SheetContainerView>
+        </BottomSheetView>
+      </BottomSheetModal>
+
+      <BottomSheetModal
+        ref={pgSuccessSheetModalRef}
+        handleComponent={null}
+        backdropComponent={BottomSheetBackdropView}
+      >
+        <BottomSheetView style={{ flex: 1 }}>
+          <SheetContainerView gap={15}>
+            <SheetCloseButton onPress={closeSheet} />
+            <View backgroundColor={"#e0f3ec"} alignSelf="center" padding={20} borderRadius={100}>
+              <View backgroundColor={"#34c759"} padding={10} borderRadius={100}>
+                <FontAwesome5 name="check" size={24} color="white" />
+              </View>
+            </View>
+            <YStack gap={10}>
+              <SheetDescriptionText>Félicitations !</SheetDescriptionText>
+              <SheetText textAlign="center">
+                Votre place est réservée pour la session "Devenez un pro du
+                Storytelling".
+              </SheetText>
+            </YStack>
+            <YStack gap={10}>
+            <PrimaryButton onPress={showPaySheet}>
+              <PrimaryButton.Text>Retourner à l'accueil</PrimaryButton.Text>
+            </PrimaryButton>
+            <SecondaryButton>
+              <SecondaryButton.Icon>
+                <FontAwesome name="calendar-o" />
+              </SecondaryButton.Icon>
+              <SecondaryButton.Text>Ajouter au calendrier</SecondaryButton.Text>
+            </SecondaryButton>
+            </YStack>
           </SheetContainerView>
         </BottomSheetView>
       </BottomSheetModal>
