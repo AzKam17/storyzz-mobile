@@ -170,7 +170,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             <XStack gap={20}>
               <XStack gap={5}>
                 <BookOpenSvg />
-                <MiscText>Leadership</MiscText>
+                <MiscText>{program.tag}</MiscText>
               </XStack>
               <XStack gap={5}>
                 <PersonGroupSvg />
@@ -251,7 +251,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               {/* <RandomChildView> */}
               <YStack gap={5} id="mentor-section">
                 <TabSectionTitle>Retour des apprenants</TabSectionTitle>
-                <LearnerFeedbackViewCarousel />
+                <LearnerFeedbackViewCarousel programId={programId} />
               </YStack>
               {/* </RandomChildView> */}
 

@@ -20,6 +20,13 @@ export interface LoginForm {
 }
 
 // types
+
+export interface Testimonial {
+    avatar: string;
+    learnerName: string;
+    learnerTitle: string;
+    text: string;
+}
 export interface Program {
     cover?: ImageURISource;
     mentorGender: "women" | "men";
@@ -34,6 +41,7 @@ export interface Program {
     programDescription: string;
     tag: string;
     avatar: string;
+    testimonials: Testimonial[];
     payAvailable?: boolean;
     variables?:{
         mentor_card_alt1?: boolean
