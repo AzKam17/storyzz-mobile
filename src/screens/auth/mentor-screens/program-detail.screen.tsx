@@ -212,20 +212,23 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               <Anchor name="learning">
                 <YStack gap={5} id="learning-section">
                   <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
-                  {
-                    program.objectives.map((e, idx) => {
-                      return <XStack key={idx} gap={10} alignItems="center" maxWidth={"90%"}>
-                    <AntDesign
-                      name="checkcircle"
-                      size={24}
-                      color="rgb(176 190 165)"
-                    />
-                    <TabSectionText>
-                      {e}
-                    </TabSectionText>
-                  </XStack>
-                    })
-                  }
+                  {program.objectives.map((e, idx) => {
+                    return (
+                      <XStack
+                        key={idx}
+                        gap={10}
+                        alignItems="center"
+                        maxWidth={"90%"}
+                      >
+                        <AntDesign
+                          name="checkcircle"
+                          size={24}
+                          color="rgb(176 190 165)"
+                        />
+                        <TabSectionText>{e}</TabSectionText>
+                      </XStack>
+                    );
+                  })}
                 </YStack>
               </Anchor>
 
@@ -239,10 +242,11 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               <Anchor name="mentor-section">
                 <YStack gap={5} id="mentor-section">
                   <TabSectionTitle>Votre mentor</TabSectionTitle>
-                  <RandomChildView>
-                    <MentorCard />
-                    <MentorCardAlt1 />
-                  </RandomChildView>
+                  {!!program?.variables?.mentor_card_alt1 ? (
+                    <MentorCard programId={programId} />
+                  ) : (
+                    <MentorCardAlt1 programId={programId} />
+                  )}
                 </YStack>
               </Anchor>
 
@@ -302,7 +306,10 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           </Text>
         </View>
         <View flex={1}>
-          <ProgramPayButton programId={programId} showToast={!program.payAvailable} />
+          <ProgramPayButton
+            programId={programId}
+            showToast={!program.payAvailable}
+          />
         </View>
       </XStack>
     </>

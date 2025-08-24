@@ -29,9 +29,14 @@ export interface Program {
     objectives: string[];
     targetPeople: string;
     mentorName: string;
+    mentorTitle: string;
+    mentorBio: string;
     programName: string;
     programDescription: string;
     tag: string;
+    variables?:{
+        mentor_card_alt1?: boolean
+    }
 }
 
 // States types

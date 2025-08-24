@@ -1,12 +1,20 @@
 import { BottomSheetBackdropView } from "@/ui/views/misc";
+import { programs } from "@/utils";
 import { Entypo } from "@expo/vector-icons";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import React from "react";
 import { ImageBackground } from "react-native";
 import { Image, Text, View, XStack, YStack } from "tamagui";
+import { Program } from "../../../../types";
 
-export const MentorCardAlt1 = React.memo(function () {
+export const MentorCardAlt1 = React.memo(function ({programId}: {programId: string}) {
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
+  const [program, setProgram] = React.useState<Program>();
+
+  React.useEffect(() => {
+    const idx = parseInt(programId);
+    setProgram(programs[idx]);
+  }, [programId]);
 
   const handlePresentModalPress = React.useCallback(() => {
     bottomSheetModalRef.current?.present();
@@ -15,6 +23,10 @@ export const MentorCardAlt1 = React.memo(function () {
   const handlePresentModalClose = React.useCallback(() => {
     bottomSheetModalRef.current?.close();
   }, []);
+
+  if(!program){
+    return <></>
+  }
 
   return (
     <>
@@ -36,13 +48,13 @@ export const MentorCardAlt1 = React.memo(function () {
               color={"rgba(26,26,26,1)"}
               fontFamily={"RedHatDisplay_700Bold"}
             >
-              Didier Drogba
+              {program.mentorName}
             </Text>
             <Text
               color={"rgba(74,74,74,1)"}
               fontFamily={"RedHatText_500Medium"}
             >
-              Leader et philantrope, Abidjan
+              {program.mentorTitle}
             </Text>
           </YStack>
           <Text
@@ -79,13 +91,13 @@ export const MentorCardAlt1 = React.memo(function () {
                   color={"rgba(26,26,26,1)"}
                   fontFamily={"RedHatDisplay_700Bold"}
                 >
-                  Didier Drogba
+                  {program.mentorName}
                 </Text>
                 <Text
                   color={"rgba(74,74,74,1)"}
                   fontFamily={"RedHatText_500Medium"}
                 >
-                  Leader et philantrope, Abidjan
+                 {program.mentorTitle}
                 </Text>
               </YStack>
             </YStack>
@@ -105,11 +117,7 @@ export const MentorCardAlt1 = React.memo(function () {
                 color={"rgba(74, 74, 74, 1)"}
                 fontFamily={"RedHatDisplay_500Medium"}
               >
-                Légende du football et philanthrope, Didier Drogba partage les
-                leçons de leadership apprises sur les terrains les plus
-                exigeants du monde et dans ses engagements humanitaires. Son
-                approche est basée sur la résilience, la vision et la capacité à
-                unir une équipe autour d'un objectif commun.
+                {program.mentorBio}
               </Text>
             </YStack>
           </YStack>

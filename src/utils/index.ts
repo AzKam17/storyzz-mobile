@@ -11,6 +11,8 @@ export const programs: Program[] = [
     price: 120_000,
     mentorGender: "women",
     mentorName: "Edith Brou-Bleu",
+    mentorTitle: "Experte en productivité, Abidjan",
+    mentorBio: "Spécialiste en organisation et productivité, Edith Brou-Bleu aide les professionnels et entrepreneurs à reprendre le contrôle de leur temps et à atteindre une efficacité maximale sans stress. Sa méthode est basée sur des outils concrets et une psychologie de la performance.",
     programName: "Maîtriser sa Productivité Personnelle",
     programDescription:
       "Organisez votre travail et gérez vos priorités pour atteindre vos objectifs sans vous épuiser",
@@ -31,6 +33,8 @@ export const programs: Program[] = [
     price: 250_000,
     mentorGender: "men",
     mentorName: "Didier Drogba",
+    mentorTitle: "Leader et philanthrope, Abidjan",
+    mentorBio: "Légende du football et philanthrope, Didier Drogba partage les leçons de leadership apprises sur les terrains les plus exigeants du monde et dans ses engagements humanitaires. Son approche est basée sur la résilience, la vision et la capacité à unir une équipe autour d'un objectif commun.",
     programName: "Leadership : Incarner le Changement",
     programDescription:
       "Apprenez à mobiliser et à inspirer vos équipes pour naviguer avec succès.",
@@ -51,6 +55,8 @@ export const programs: Program[] = [
     price: 180_000,
     mentorGender: "women",
     mentorName: "Janine Kacou Diagou",
+    mentorTitle: "Stratège en management, Abidjan",
+    mentorBio: "Figure emblématique du monde des affaires en Afrique, Janine Kacou Diagou offre une perspective pragmatique et éprouvée sur le management moderne. Elle a dirigé de grandes équipes et transformé des organisations grâce à des principes de gestion clairs et humains.",
     programName: "La Boîte à Outils du Manager Efficace",
     programDescription:
       "Maîtrisez les techniques essentielles pour déléguer, motiver et donner du feedback.",
@@ -71,6 +77,8 @@ export const programs: Program[] = [
     price: 350_000,
     mentorGender: "men",
     mentorName: "Tidjane Thiam",
+    mentorTitle: "Expert en finance internationale, Abidjan",
+    mentorBio:"Avec une carrière au sommet de la finance mondiale, Tidjane Thiam a une capacité unique à démystifier les concepts financiers les plus complexes. Il rend la finance accessible et actionnable pour les dirigeants et entrepreneurs qui ne sont pas des spécialistes, mais qui ont besoin de piloter leur entreprise par les chiffres.",
     programName: "Finance pour Dirigeants et Managers",
     programDescription:
       "Prenez des décisions éclairées en maîtrisant les indicateurs financiers clés.",
@@ -92,6 +100,8 @@ export const programs: Program[] = [
     price: 50_000,
     mentorGender: "women",
     mentorName: "Aya Konan",
+    mentorTitle: "",
+    mentorBio:"Avec plus de 15 ans d'expérience, Aya Konan est une figure de proue du coaching en communication en Côte d'Ivoire. Elle a accompagné des centaines de dirigeants et d'entrepreneurs à maîtriser l'art du storytelling pour transformer leurs entreprises.\nPassionnée par le potentiel humain, Aya croit fermement que chaque histoire, bien racontée, peut changer le monde. Son approche unique, qui allie techniques de narration traditionnelles et stratégies de communication modernes, en fait une mentore recherchée et respectée.",
     programName: "Devenez un pro du Storytelling",
     programDescription:
       "Racontez des histoires qui marquent et boostez votre carrière.",
@@ -105,5 +115,8 @@ export const programs: Program[] = [
     ],
     targetPeople: "Idéal pour les entrepreneurs, les managers, les chefs de projet, et toute personne souhaitant améliorer son impact à l'oral. Que vous prépariez une présentation cruciale, un pitch pour des investisseurs ou que vous vouliez simplement être plus à l'aise en réunion, ce programme est fait pour vous.",
     tag: "Leadership",
+    variables: {
+      mentor_card_alt1: true
+    }
   },
 ];

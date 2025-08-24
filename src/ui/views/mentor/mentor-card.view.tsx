@@ -1,13 +1,24 @@
 import { BottomSheetBackdropView } from "@/ui/views/misc";
+import { programs } from "@/utils";
 import { Entypo } from "@expo/vector-icons";
 import { BottomSheetModal, BottomSheetView } from "@gorhom/bottom-sheet";
 import React from "react";
 import { ImageBackground } from "react-native";
 import { Image, Text, View, YStack } from "tamagui";
+import { Program } from "../../../../types";
 
-
-export const MentorCard = React.memo(function () {
+export const MentorCard = React.memo(function ({
+  programId,
+}: {
+  programId: string;
+}) {
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
+  const [program, setProgram] = React.useState<Program>();
+
+  React.useEffect(() => {
+    const idx = parseInt(programId);
+    setProgram(programs[idx]);
+  }, [programId]);
 
   const handlePresentModalPress = React.useCallback(() => {
     bottomSheetModalRef.current?.present();
@@ -16,6 +27,10 @@ export const MentorCard = React.memo(function () {
   const handlePresentModalClose = React.useCallback(() => {
     bottomSheetModalRef.current?.close();
   }, []);
+
+   if (!program) {
+    return null;
+  }
 
   return (
     <>
@@ -38,8 +53,7 @@ export const MentorCard = React.memo(function () {
             fontFamily={"RedHatText_400Regular"}
             color={"rgba(74, 74, 74, 1)"}
           >
-            Avec plus de 15 ans d'expérience, Aya Konan est une figure de proue
-            du coaching en communication en Côte d'Ivoire...
+            {`${program.mentorBio.slice(0, 100)}...`}
           </Text>
         </YStack>
       </YStack>
@@ -66,18 +80,20 @@ export const MentorCard = React.memo(function () {
           <YStack gap={20} padding={20} paddingBottom={30}>
             <YStack>
               <Text
+                textAlign="center"
                 fontSize={25}
                 color={"rgba(153, 77, 77, 1)"}
                 fontFamily={"RedHatText_600SemiBold"}
               >
-                Aya Konan
+                {program.mentorName}
               </Text>
               <Text
+                textAlign="center"
                 fontSize={15}
                 color={"rgba(74, 74, 74, 1)"}
                 fontFamily={"RedHatText_400Regular"}
               >
-                Experte en communication
+                {program.mentorTitle}
               </Text>
             </YStack>
             <Text
@@ -85,22 +101,7 @@ export const MentorCard = React.memo(function () {
               color={"rgba(74, 74, 74, 1)"}
               fontFamily={"RedHatText_400Regular"}
             >
-              Avec plus de 15 ans d'expérience, Aya Konan est une figure de
-              proue du coaching en communication en Côte d'Ivoire. Elle a
-              accompagné des centaines de dirigeants et d'entrepreneurs à
-              maîtriser l'art du storytelling pour transformer leurs
-              entreprises.
-            </Text>
-            <Text
-              fontSize={15}
-              color={"rgba(74, 74, 74, 1)"}
-              fontFamily={"RedHatText_400Regular"}
-            >
-              Passionnée par le potentiel humain, Aya croit fermement que chaque
-              histoire, bien racontée, peut changer le monde. Son approche
-              unique, qui allie techniques de narration traditionnelles et
-              stratégies de communication modernes, en fait une mentore
-              recherchée et respectée.
+              {program.mentorBio}
             </Text>
           </YStack>
         </BottomSheetView>
