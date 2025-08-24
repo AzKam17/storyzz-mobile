@@ -43,9 +43,7 @@ export interface Program {
     avatar: string;
     testimonials: Testimonial[];
     payAvailable?: boolean;
-    variables?:{
-        mentor_card_alt1?: boolean
-    }
+    variables?: Record<string, boolean>;
 }
 
 // States types

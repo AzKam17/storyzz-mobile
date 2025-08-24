@@ -259,6 +259,7 @@ export const programs: Program[] = [
     tag: "Leadership",
     variables: {
       mentor_card_alt1: true,
+      similar_program_alt1: true,
     },
   },
 ];

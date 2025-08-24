@@ -254,6 +254,32 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               </YStack>
               {/* </RandomChildView> */}
 
+              {program?.variables?.similar_program_alt1 ? (
+                <>
+                  <YStack
+                    gap={15}
+                    paddingVertical={20}
+                    backgroundColor={"rgba(242, 232, 232, 1)"}
+                  >
+                    <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                    <ScrollView
+                      horizontal={true}
+                      showsHorizontalScrollIndicator={false}
+                      contentContainerStyle={styles.contentContainerStyle}
+                    >
+                      {programs.map((e, idx) => (
+                        <SimilarProgramCard key={idx} {...e} />
+                      ))}
+                    </ScrollView>
+                  </YStack>
+                </>
+              ) : (
+                <YStack gap={5} paddingVertical={20}>
+                  <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                  <SimilarProgramsAlt1 />
+                </YStack>
+              )}
+
               {/*<RandomChildView>
                 * <>
                   <YStack
@@ -280,10 +306,6 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   </YStack>
                 </>
               </RandomChildView>*/}
-              <YStack gap={5} paddingVertical={20}>
-                <TabSectionTitle>Programmes similaires</TabSectionTitle>
-                <SimilarProgramsAlt1 />
-              </YStack>
             </YStack>
           </ScrollView>
         </ScrollAnchorProvider>
