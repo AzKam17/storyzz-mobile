@@ -93,7 +93,7 @@ export const HomeScreen = React.memo(function () {
   const [chatMessages, setChatMessages] = React.useState<AIChatMessage[]>([]);
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
-  const snapPoints = React.useMemo(() => ["60%", "80%"], []);
+  const snapPoints = React.useMemo(() => ["50%"], []);
 
   const goToPrograms = React.useCallback(
     function () {
@@ -116,7 +116,7 @@ export const HomeScreen = React.memo(function () {
   const openChat = React.useCallback(
     function (searchValue: string) {
       if (!searchValue) return;
-      
+
       bottomSheetModalRef.current?.dismiss();
       const time = setTimeout(() => {
         const updatedMessages = [
@@ -155,25 +155,29 @@ export const HomeScreen = React.memo(function () {
             body: response,
           },
         ];
-        
+
         if (prevState.length === 2) {
           updatedMessages.push({
             sender: "ai" as const,
             body: "Puisqu'il me manque des précisions, voici tous les programmes disponibles. J'espère que vous trouverez votre bonheur parmi eux !",
           });
+
+          setTimeout(() => {
+            Keyboard.dismiss();
+            handlePresentModalClose();
+            setTimeout(() => {
+              navigation.dispatch(CommonActions.navigate({ name: "Mentor" }));
+            }, 1000);
+          }, 1500);
         }
-        
+
         return updatedMessages;
       });
 
       setResponse("");
     },
-    [response, chatMessages]
+    [response, chatMessages, navigation]
   );
-
-  const handleBottomSheetChange = React.useCallback((index: number) => {
-  console.log('Bottom sheet index changed to:', index);
-}, []);
 
   return (
     <Page hasBottom={false}>
@@ -217,13 +221,17 @@ export const HomeScreen = React.memo(function () {
       </YStack>
 
       <BottomSheetModal
-        //snapPoints={snapPoints}
+        keyboardBehavior="interactive"
+        keyboardBlurBehavior="restore"
+        snapPoints={snapPoints}
+        enableDynamicSizing={false}
         ref={bottomSheetModalRef}
         handleComponent={null}
-        onChange={handleBottomSheetChange}
         backdropComponent={BottomSheetBackdropView}
       >
-        <BottomSheetView style={{ flex: 1, paddingBottom: insets.bottom }}>
+        <BottomSheetView
+          style={{ height: "100%", paddingBottom: insets.bottom }}
+        >
           <XStack padding={15} borderColor={"#e5e7eb"} borderBottomWidth={1}>
             <XStack gap={5}>
               <Entypo name="message" size={24} color="rgba(255, 59, 48, 1)" />
@@ -241,7 +249,7 @@ export const HomeScreen = React.memo(function () {
               <Entypo name="cross" size={24} color="black" />
             </View>
           </XStack>
-          <YStack flex={1}>
+          <YStack flex={1} height={200}>
             <AIChatView messages={chatMessages} />
           </YStack>
           <XStack gap={10} padding={15}>

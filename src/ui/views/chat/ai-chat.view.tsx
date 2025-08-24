@@ -1,7 +1,7 @@
 import React from "react";
 import { AIChatMessage } from "../../../../types";
 import { styled, Text, View, XStack } from "tamagui";
-import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
+import { BottomSheetFlatList } from "@gorhom/bottom-sheet";
 import { ActivityIndicator } from "react-native";
 
 const UserMessageText = styled(Text, {
@@ -29,7 +29,8 @@ export const AIChatView = React.memo(function ({
   return (
     <View padding={15}>
       <BottomSheetFlatList
-        data={messages}
+        inverted
+        data={[...messages].reverse()}
         renderItem={({ item }) => {
           if (item.sender === "user") {
             return <UserMessageText>{item.body}</UserMessageText>;
