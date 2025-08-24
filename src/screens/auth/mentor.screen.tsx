@@ -50,7 +50,7 @@ export const MentorScreen = React.memo(function () {
 
   return (
     <Page hasBottom={true}>
-      <PageTitleText>Programes</PageTitleText>
+      <PageTitleText>Recommandations</PageTitleText>
       <FlashList
         data={listValues}
         ListHeaderComponent={
