@@ -111,14 +111,36 @@ export const HomeScreen = React.memo(function () {
     const time = setTimeout(() => {
       Keyboard.dismiss();
       bottomSheetModalRef?.current?.present();
-      chatMessages.push({
-        sender: "user",
+      
+      const updatedMessages = [...chatMessages, {
+        sender: "user" as const,
         body: searchValue,
-      });
+      }];
+      
+      if (chatMessages.length === 0) {
+        updatedMessages.push({
+          sender: "ai" as const,
+          body: "Bonjour ! Je suis Storyzz AI Coach, et je suis là pour vous aider à trouver le programme de formation parfait. Pour que je puisse vous guider au mieux, pourriez-vous me dire quel est votre objectif principal en cherchant une formation ? Et y a-t-il un domaine spécifique qui vous intéresse (par exemple, la tech, le marketing, la gestion, etc.) ?",
+        });
+      }
+      
+      setChatMessages(updatedMessages);
     }, 150);
 
     return () => clearTimeout(time);
-  }, []);
+  }, [chatMessages]);
+
+  const addUserMessage = React.useCallback(function(){
+    setChatMessages(prevState => ([
+      ...prevState,
+      {
+        sender: 'user' as const,
+        body: response
+      }
+    ]))
+
+    setResponse('')
+  }, [response, chatMessages])
 
   return (
     <Page hasBottom={false}>
@@ -164,6 +186,8 @@ export const HomeScreen = React.memo(function () {
       <BottomSheetModal
         ref={bottomSheetModalRef}
         handleComponent={null}
+        enablePanDownToClose={false} 
+        enableContentPanningGesture={false} 
         backdropComponent={BottomSheetBackdropView}
       >
         <BottomSheetView style={{ flex: 1, paddingBottom: insets.bottom }}>
@@ -195,7 +219,7 @@ export const HomeScreen = React.memo(function () {
               onChangeText={setResponse}
             />
             <View
-              onPress={() => {}}
+              onPress={addUserMessage}
               borderRadius={5}
               aspectRatio={1}
               justifyContent="center"

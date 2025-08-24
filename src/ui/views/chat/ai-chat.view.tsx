@@ -1,7 +1,7 @@
 import React from "react";
 import { AIChatMessage } from "../../../../types";
 import { styled, Text, View, XStack } from "tamagui";
-import { FlashList } from "@shopify/flash-list";
+import { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import { ActivityIndicator } from "react-native";
 
 const UserMessageText = styled(Text, {
@@ -12,10 +12,13 @@ const UserMessageText = styled(Text, {
   alignSelf: "flex-end",
   borderBottomRightRadius: 0,
   marginTop: 5,
+  maxWidth: 200,
+  textAlign: "right",
 });
 
 const AIMessageText = styled(Text, {
   color: "black",
+  textAlign: "left",
 });
 
 export const AIChatView = React.memo(function ({
@@ -25,7 +28,7 @@ export const AIChatView = React.memo(function ({
 }) {
   return (
     <View padding={15} height={250}>
-      <FlashList
+      <BottomSheetFlatList
         data={messages}
         renderItem={({ item }) => {
           if (item.sender === "user") {
@@ -51,6 +54,7 @@ export const AIChatView = React.memo(function ({
                 alignSelf={"flex-start"}
                 borderBottomLeftRadius={0}
                 marginTop={5}
+                maxWidth={300}
               >
                 {item.loading ? (
                   <ActivityIndicator />
