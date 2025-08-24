@@ -22,11 +22,17 @@ import {
   RedHatText_500Medium,
   RedHatText_700Bold,
 } from "@expo-google-fonts/red-hat-text";
-import Toast from "react-native-toast-message";
+import Toast, { ToastConfig } from "react-native-toast-message";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { KeyboardProvider } from "react-native-keyboard-controller";
+import {SuccessRegisterToastView} from '@/ui/views/toast'
 
 const config = createTamagui(defaultConfig);
+
+const toastConfig: ToastConfig = {
+  // @ts-ignore
+  successRegisterProgram: (props) => <SuccessRegisterToastView {...props} />, 
+};
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -58,7 +64,7 @@ export default function App() {
           <SafeAreaProvider>
             <BottomSheetModalProvider>
               <Navigation />
-              <Toast position="bottom" />
+              <Toast position="bottom" config={toastConfig} />
             </BottomSheetModalProvider>
           </SafeAreaProvider>
         </GestureHandlerRootView>

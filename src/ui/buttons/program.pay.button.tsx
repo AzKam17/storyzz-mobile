@@ -8,6 +8,7 @@ import { FormInput, Input1 } from "@/ui/inputs";
 import { PaymentButton } from "@/ui/buttons/payment-method.button";
 import { SecondaryButton } from "@/ui/buttons/secondary.button";
 import { useNavigation } from "@react-navigation/native";
+import Toast from "react-native-toast-message";
 
 export interface PayButtonProps {
   programId: string;
@@ -33,10 +34,24 @@ export const ProgramPayButton = React.memo(function ({
   }, []);
 
   const showToastFunc = React.useCallback(function () {
-    alert("Inscription réussie");
+    if (!showToast) return;
+
+    Toast.show({
+      type: "successRegisterProgram",
+      text1: "Inscription réussie",
+      props: {
+        style: {
+          backgroundColor: "green",
+        },
+      },
+    });
   }, []);
 
   const showDescSheet = React.useCallback(function () {
+    if (showToast) {
+      showToastFunc();
+      return;
+    }
     pgDescSheetModalRef.current?.present();
     return;
   }, []);

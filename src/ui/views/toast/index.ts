@@ -1,0 +1,1 @@
+export * from './success-register.toast.view'

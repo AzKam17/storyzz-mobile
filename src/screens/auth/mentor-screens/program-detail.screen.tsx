@@ -340,7 +340,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
           </Text>
         </View>
         <View flex={1}>
-          <ProgramPayButton programId={programId} />
+          <ProgramPayButton programId={programId} showToast={true} />
         </View>
       </XStack>
     </>
