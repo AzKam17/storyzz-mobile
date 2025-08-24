@@ -30,6 +30,7 @@ import { RandomChildView } from "@/ui/views/misc";
 import { LearnerFeedbackViewCarousel } from "@/ui/views/learner";
 import { SimilarProgramsAlt1 } from "@/ui/views/programs";
 import { ProgramPayButton } from "@/ui/buttons";
+import { CAvatar } from "@/ui/views/user";
 
 const ProgramTitleText = styled(Text, {
   fontSize: 24,
@@ -144,11 +145,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             </ProgramDescriptionText>
             <XStack justifyContent="space-between" alignItems="center">
               <XStack gap={10}>
-                {program.mentorGender === "men" ? (
-                  <MenImagePlaceholder size={40} />
-                ) : (
-                  <WomenImagePlaceholder size={40} />
-                )}
+                <CAvatar height={40} width={40} avatar={program.avatar} />
                 <YStack>
                   <MentorNameText>{program.mentorName}</MentorNameText>
                   <MentorJobText>Experte en communication</MentorJobText>
