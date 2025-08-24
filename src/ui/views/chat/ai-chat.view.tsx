@@ -27,7 +27,7 @@ export const AIChatView = React.memo(function ({
   messages: AIChatMessage[];
 }) {
   return (
-    <View padding={15} height={250}>
+    <View padding={15}>
       <BottomSheetFlatList
         data={messages}
         renderItem={({ item }) => {

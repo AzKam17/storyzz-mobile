@@ -93,6 +93,8 @@ export const HomeScreen = React.memo(function () {
   const [chatMessages, setChatMessages] = React.useState<AIChatMessage[]>([]);
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
+  const snapPoints = React.useMemo(() => ["60%", "80%"], []);
+
   const goToPrograms = React.useCallback(
     function () {
       navigation.dispatch(CommonActions.navigate({ name: "Mentor" }));
@@ -101,46 +103,77 @@ export const HomeScreen = React.memo(function () {
   );
 
   const handlePresentModalClose = React.useCallback(() => {
-    bottomSheetModalRef.current?.close();
-  }, []);
+    Keyboard.dismiss();
+    bottomSheetModalRef.current?.dismiss();
 
-  const openChat = React.useCallback(function (searchValue: string) {
-    if (!searchValue) return;
-    bottomSheetModalRef?.current?.close();
-
-    const time = setTimeout(() => {
-      Keyboard.dismiss();
-      bottomSheetModalRef?.current?.present();
-      
-      const updatedMessages = [...chatMessages, {
-        sender: "user" as const,
-        body: searchValue,
-      }];
-      
-      if (chatMessages.length === 0) {
-        updatedMessages.push({
-          sender: "ai" as const,
-          body: "Bonjour ! Je suis Storyzz AI Coach, et je suis là pour vous aider à trouver le programme de formation parfait. Pour que je puisse vous guider au mieux, pourriez-vous me dire quel est votre objectif principal en cherchant une formation ? Et y a-t-il un domaine spécifique qui vous intéresse (par exemple, la tech, le marketing, la gestion, etc.) ?",
-        });
-      }
-      
-      setChatMessages(updatedMessages);
-    }, 150);
+    const time = setTimeout(function () {
+      setChatMessages([]);
+    }, 1000);
 
     return () => clearTimeout(time);
   }, [chatMessages]);
 
-  const addUserMessage = React.useCallback(function(){
-    setChatMessages(prevState => ([
-      ...prevState,
-      {
-        sender: 'user' as const,
-        body: response
-      }
-    ]))
+  const openChat = React.useCallback(
+    function (searchValue: string) {
+      if (!searchValue) return;
+      
+      bottomSheetModalRef.current?.dismiss();
+      const time = setTimeout(() => {
+        const updatedMessages = [
+          ...chatMessages,
+          {
+            sender: "user" as const,
+            body: searchValue,
+          },
+        ];
 
-    setResponse('')
-  }, [response, chatMessages])
+        if (chatMessages.length === 0) {
+          updatedMessages.push({
+            sender: "ai" as const,
+            body: "Bonjour ! Je suis Storyzz AI Coach, et je suis là pour vous aider à trouver le programme de formation parfait. Pour que je puisse vous guider au mieux, pourriez-vous me dire quel est votre objectif principal en cherchant une formation ? Et y a-t-il un domaine spécifique qui vous intéresse (par exemple, la tech, le marketing, la gestion, etc.) ?",
+          });
+        }
+
+        setChatMessages(updatedMessages);
+
+        Keyboard.dismiss();
+        bottomSheetModalRef?.current?.present();
+      }, 200);
+
+      return () => clearTimeout(time);
+    },
+    [chatMessages]
+  );
+
+  const addUserMessage = React.useCallback(
+    function () {
+      setChatMessages((prevState) => {
+        const updatedMessages = [
+          ...prevState,
+          {
+            sender: "user" as const,
+            body: response,
+          },
+        ];
+        
+        if (prevState.length === 2) {
+          updatedMessages.push({
+            sender: "ai" as const,
+            body: "Puisqu'il me manque des précisions, voici tous les programmes disponibles. J'espère que vous trouverez votre bonheur parmi eux !",
+          });
+        }
+        
+        return updatedMessages;
+      });
+
+      setResponse("");
+    },
+    [response, chatMessages]
+  );
+
+  const handleBottomSheetChange = React.useCallback((index: number) => {
+  console.log('Bottom sheet index changed to:', index);
+}, []);
 
   return (
     <Page hasBottom={false}>
@@ -184,10 +217,10 @@ export const HomeScreen = React.memo(function () {
       </YStack>
 
       <BottomSheetModal
+        //snapPoints={snapPoints}
         ref={bottomSheetModalRef}
         handleComponent={null}
-        enablePanDownToClose={false} 
-        enableContentPanningGesture={false} 
+        onChange={handleBottomSheetChange}
         backdropComponent={BottomSheetBackdropView}
       >
         <BottomSheetView style={{ flex: 1, paddingBottom: insets.bottom }}>
@@ -208,7 +241,7 @@ export const HomeScreen = React.memo(function () {
               <Entypo name="cross" size={24} color="black" />
             </View>
           </XStack>
-          <YStack>
+          <YStack flex={1}>
             <AIChatView messages={chatMessages} />
           </YStack>
           <XStack gap={10} padding={15}>
