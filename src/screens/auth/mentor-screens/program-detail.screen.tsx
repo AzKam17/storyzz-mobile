@@ -136,7 +136,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
         <>
           <YStack gap={20} paddingVertical={15}>
             <Image
-              source={require("~/images/default-image-women-large.png")}
+              source={program.cover}
               style={{ width: "100%", height: 215, borderRadius: 10 }}
             />
             <ProgramTitleText>{program.programName}</ProgramTitleText>
