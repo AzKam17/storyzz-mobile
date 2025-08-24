@@ -90,9 +90,7 @@ export const HomeScreen = React.memo(function () {
   const insets = useSafeAreaInsets();
   const navigation = useNavigation();
   const [response, setResponse] = React.useState<string>("");
-  const [chatMessages, setChatMessages] = React.useState<AIChatMessage[]>([{
-    sender: 'ai', body: 'Hello'
-  }]);
+  const [chatMessages, setChatMessages] = React.useState<AIChatMessage[]>([]);
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
 
   const goToPrograms = React.useCallback(
