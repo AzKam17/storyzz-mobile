@@ -21,8 +21,13 @@ export interface LoginForm {
 
 // types
 export interface Program {
+    payAvailable?: boolean;
     cover?: ImageURISource;
     mentorGender: "women" | "men";
+    price: number;
+    about: string;
+    objectives: string[];
+    targetPeople: string;
     mentorName: string;
     programName: string;
     programDescription: string;

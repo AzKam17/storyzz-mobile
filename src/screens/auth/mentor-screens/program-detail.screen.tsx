@@ -205,72 +205,34 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               <Anchor name="about">
                 <YStack gap={5} id="about-section">
                   <TabSectionTitle>À propos</TabSectionTitle>
-                  <TabSectionText>
-                    Ce programme intensif est conçu pour transformer votre
-                    manière de communiquer. En s'appuyant sur les techniques des
-                    plus grands orateurs, vous apprendrez à captiver votre
-                    audience, à structurer vos idées avec clarté et à utiliser
-                    votre voix pour inspirer confiance. Chaque module combine
-                    théorie et exercices pratiques pour une progression rapide
-                    et durable.
-                  </TabSectionText>
+                  <TabSectionText>{program.about}</TabSectionText>
                 </YStack>
               </Anchor>
 
               <Anchor name="learning">
                 <YStack gap={5} id="learning-section">
                   <TabSectionTitle>Ce que vous apprendrez</TabSectionTitle>
-                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
+                  {
+                    program.objectives.map((e, idx) => {
+                      return <XStack key={idx} gap={10} alignItems="center" maxWidth={"90%"}>
                     <AntDesign
                       name="checkcircle"
                       size={24}
                       color="rgb(176 190 165)"
                     />
                     <TabSectionText>
-                      Développer une confiance inébranlable en prise de parole.
+                      {e}
                     </TabSectionText>
                   </XStack>
-                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-                    <AntDesign
-                      name="checkcircle"
-                      size={24}
-                      color="rgb(176 190 165)"
-                    />
-                    <TabSectionText>
-                      Structurer des récits qui captivent et persuadent.
-                    </TabSectionText>
-                  </XStack>
-                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-                    <AntDesign
-                      name="checkcircle"
-                      size={24}
-                      color="rgb(176 190 165)"
-                    />
-                    <TabSectionText>
-                      Utiliser le langage corporel pour renforcer votre message.
-                    </TabSectionText>
-                  </XStack>
-                  <XStack gap={10} alignItems="center" maxWidth={"80%"}>
-                    <AntDesign
-                      name="checkcircle"
-                      size={24}
-                      color="rgb(176 190 165)"
-                    />
-                    <TabSectionText>
-                      Adapter votre ton pour chaque type d'audience.
-                    </TabSectionText>
-                  </XStack>
+                    })
+                  }
                 </YStack>
               </Anchor>
 
               <Anchor name="target-section">
                 <YStack gap={5} id="target-section">
                   <TabSectionTitle>Pour qui</TabSectionTitle>
-                  <TabSectionText>
-                    Idéal pour les entrepreneurs, les managers, les chefs de
-                    projet, et toute personne souhaitant améliorer son impact à
-                    l'oral.
-                  </TabSectionText>
+                  <TabSectionText>{program.targetPeople}</TabSectionText>
                 </YStack>
               </Anchor>
 
@@ -336,11 +298,11 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
             Prix de la session
           </Text>
           <Text fontSize={20} fontFamily={"RedHatDisplay_900Black"}>
-            50 000 FCFA
+            {new Intl.NumberFormat("fr-FR").format(program.price)} FCFA
           </Text>
         </View>
         <View flex={1}>
-          <ProgramPayButton programId={programId} showToast={true} />
+          <ProgramPayButton programId={programId} showToast={!program.payAvailable} />
         </View>
       </XStack>
     </>
