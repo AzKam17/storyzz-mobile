@@ -132,6 +132,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 
   const Header = React.useCallback(
     function ({ program }: { program: Program }) {
+
       return (
         <>
           <YStack gap={20} paddingVertical={15}>
@@ -151,9 +152,9 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   <MentorJobText>Experte en communication</MentorJobText>
                 </YStack>
               </XStack>
-              <XStack gap={5}>
+              <XStack gap={5} >
                 <HeartSvg />
-                <MiscText>4.8</MiscText>
+                <MiscText>{7.8}</MiscText>
               </XStack>
             </XStack>
             <XStack gap={20}>
