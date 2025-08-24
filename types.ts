@@ -1,5 +1,11 @@
 import { ImageURISource } from "react-native";
 
+export interface AIChatMessage {
+    sender: 'user' | 'ai'
+    body: string
+    createdAt?: string
+}
+
 // Forms
 export interface SignInForm {
     email: string;
