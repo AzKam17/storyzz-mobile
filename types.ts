@@ -21,7 +21,6 @@ export interface LoginForm {
 
 // types
 export interface Program {
-    payAvailable?: boolean;
     cover?: ImageURISource;
     mentorGender: "women" | "men";
     price: number;
@@ -34,6 +33,8 @@ export interface Program {
     programName: string;
     programDescription: string;
     tag: string;
+    avatar: string;
+    payAvailable?: boolean;
     variables?:{
         mentor_card_alt1?: boolean
     }

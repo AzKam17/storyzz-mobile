@@ -1,4 +1,5 @@
 import { MenImagePlaceholder, WomenImagePlaceholder } from "@/ui/views/programs/mentor-image-placeholder.view";
+import { CAvatar } from "@/ui/views/user";
 import { useNavigation } from "@react-navigation/native";
 import React from "react";
 import { styled, Text, XStack, YStack } from "tamagui";
@@ -40,6 +41,7 @@ const Tag = styled(Text, {
 
 type Props = {
   id: number;
+  avatar: string;
   mentorGender: string;
   mentorName: string;
   programName: string;
@@ -48,7 +50,7 @@ type Props = {
 };
 
 export const ProgramCardView = React.memo(function (props: Props) {
-  const { mentorGender, mentorName, programName, programDescription, tag } =
+  const { avatar, mentorGender, mentorName, programName, programDescription, tag } =
     props;
   const navigation = useNavigation();
 
@@ -65,11 +67,7 @@ export const ProgramCardView = React.memo(function (props: Props) {
   return (
     <OuterView onPress={goToProgramDetail}>
       <YStack flex={1} justifyContent="center">
-        {mentorGender === "men" ? (
-          <MenImagePlaceholder size={80} />
-        ) : (
-          <WomenImagePlaceholder size={80} />
-        )}
+        <CAvatar avatar={avatar} />
       </YStack>
       <YStack flex={3} gap={5}>
         <MentorTitle>{mentorName}</MentorTitle>

@@ -6,8 +6,13 @@ import React from "react";
 import { ImageBackground } from "react-native";
 import { Image, Text, View, XStack, YStack } from "tamagui";
 import { Program } from "../../../../types";
+import { CAvatar } from "@/ui/views/user";
 
-export const MentorCardAlt1 = React.memo(function ({programId}: {programId: string}) {
+export const MentorCardAlt1 = React.memo(function ({
+  programId,
+}: {
+  programId: string;
+}) {
   const bottomSheetModalRef = React.useRef<BottomSheetModal>(null);
   const [program, setProgram] = React.useState<Program>();
 
@@ -24,8 +29,8 @@ export const MentorCardAlt1 = React.memo(function ({programId}: {programId: stri
     bottomSheetModalRef.current?.close();
   }, []);
 
-  if(!program){
-    return <></>
+  if (!program) {
+    return <></>;
   }
 
   return (
@@ -37,10 +42,7 @@ export const MentorCardAlt1 = React.memo(function ({programId}: {programId: stri
         borderRadius={10}
         onPress={handlePresentModalPress}
       >
-        <Image
-          source={require("~/images/avatar1.png")}
-          style={{ height: 80, width: 80, borderRadius: 100 }}
-        />
+        <CAvatar avatar={program.avatar} />
         <YStack gap={5} justifyContent="center">
           <YStack>
             <Text
@@ -81,10 +83,7 @@ export const MentorCardAlt1 = React.memo(function ({programId}: {programId: stri
               <Entypo name="cross" size={24} color="black" />
             </View>
             <YStack alignItems="center">
-              <Image
-                source={require("~/images/avatar1.png")}
-                style={{ height: 80, width: 80, borderRadius: 100 }}
-              />
+              <CAvatar avatar={program.avatar} />
               <YStack alignItems="center">
                 <Text
                   fontSize={16}
@@ -97,7 +96,7 @@ export const MentorCardAlt1 = React.memo(function ({programId}: {programId: stri
                   color={"rgba(74,74,74,1)"}
                   fontFamily={"RedHatText_500Medium"}
                 >
-                 {program.mentorTitle}
+                  {program.mentorTitle}
                 </Text>
               </YStack>
             </YStack>

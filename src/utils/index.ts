@@ -7,6 +7,7 @@ const cover4 = require("~/images/cover3.avif");
 
 export const programs: Program[] = [
   {
+    avatar: 'avatar2',
     cover: cover1,
     price: 120_000,
     mentorGender: "women",
@@ -29,6 +30,7 @@ export const programs: Program[] = [
     tag: "Productivité",
   },
   {
+    avatar: 'avatar1',
     cover: cover2,
     price: 250_000,
     mentorGender: "men",
@@ -51,6 +53,7 @@ export const programs: Program[] = [
     tag: "Leadership",
   },
   {
+    avatar: 'avatar3',
     cover: cover3,
     price: 180_000,
     mentorGender: "women",
@@ -73,6 +76,7 @@ export const programs: Program[] = [
     tag: "Management",
   },
   {
+    avatar: 'avatar4',
     cover: cover4,
     price: 350_000,
     mentorGender: "men",
@@ -95,6 +99,7 @@ export const programs: Program[] = [
     tag: "Finance",
   },
   {
+    avatar: 'avatar3',
     cover: cover4,
     payAvailable: true,
     price: 50_000,
