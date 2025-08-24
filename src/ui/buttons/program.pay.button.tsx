@@ -21,6 +21,7 @@ export const ProgramPayButton = React.memo(function ({
   showToast,
 }: PayButtonProps) {
   const navigation = useNavigation();
+  const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [step, setStep] = React.useState<0 | 1 | 2>(0);
   const [paymentMethod, setPaymentMethod] = React.useState<"mobile" | "card">(
     "mobile"
@@ -35,16 +36,22 @@ export const ProgramPayButton = React.memo(function ({
 
   const showToastFunc = React.useCallback(function () {
     if (!showToast) return;
+    setIsLoading(true);
 
-    Toast.show({
-      type: "successRegisterProgram",
-      text1: "Inscription réussie",
-      props: {
-        style: {
-          backgroundColor: "green",
+    const time = setTimeout(() => {
+      setIsLoading(false)
+      Toast.show({
+        type: "successRegisterProgram",
+        text1: "Inscription réussie",
+        props: {
+          style: {
+            backgroundColor: "green",
+          },
         },
-      },
-    });
+      });
+    }, 750);
+
+    return () => clearTimeout(time);
   }, []);
 
   const showDescSheet = React.useCallback(function () {
@@ -73,7 +80,7 @@ export const ProgramPayButton = React.memo(function ({
 
     const timer = setTimeout(() => {
       pgSuccessSheetModalRef.current?.present();
-    }, 700);
+    }, 1500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -110,7 +117,7 @@ export const ProgramPayButton = React.memo(function ({
 
   return (
     <>
-      <PrimaryButton onPress={showDescSheet}>
+      <PrimaryButton loading={isLoading} onPress={showDescSheet}>
         <PrimaryButton.Text>Commencer</PrimaryButton.Text>
       </PrimaryButton>
 

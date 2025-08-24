@@ -1,4 +1,5 @@
 import React from "react";
+import { ActivityIndicator } from "react-native";
 import { Button, Text, styled, View, withStaticProperties } from "tamagui";
 
 export const PButtonFrame = styled(View, {
@@ -14,6 +15,14 @@ export const PButtonFrame = styled(View, {
   },
   pressStyle:{
     backgroundColor: "rgba(255, 59, 48, 0.8)",
+  },
+
+  variants: {
+    loading: {
+      true: {
+        backgroundColor: "rgb(173, 142, 151)",
+      },
+    },
   }
 })
 
@@ -23,7 +32,22 @@ export const PButtonText = styled(Text, {
   fontFamily: 'RedHatText_700Bold',
 })
 
-export const PrimaryButton = withStaticProperties(PButtonFrame, {
+const PrimaryButtonImpl = React.forwardRef<
+  React.ElementRef<typeof PButtonFrame>,
+  React.ComponentProps<typeof PButtonFrame> & { loading?: boolean; children?: React.ReactNode }
+>(({ loading, children, ...props }, ref) => {
+  return (
+    <PButtonFrame ref={ref} loading={loading} {...props}>
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <PButtonText>{children}</PButtonText>
+      )}
+    </PButtonFrame>
+  );
+});
+
+export const PrimaryButton = withStaticProperties(PrimaryButtonImpl, {
   name: 'PrimaryButton',
   Text: PButtonText,
 })
