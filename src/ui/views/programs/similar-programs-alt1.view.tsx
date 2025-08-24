@@ -38,7 +38,7 @@ export const SimilarProgramsAlt1Item = React.memo(function({cover, tag, mentorNa
 })
 
 export const SimilarProgramsAlt1 = React.memo(function(){
-    return <ScrollView horizontal={true} contentContainerStyle={{gap: 10}}>
+    return <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} contentContainerStyle={{gap: 10}}>
         {
             programs.map((program, idx) => (
                 <SimilarProgramsAlt1Item key={idx} {...program} />

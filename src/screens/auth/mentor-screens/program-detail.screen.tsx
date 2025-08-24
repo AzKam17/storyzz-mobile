@@ -132,7 +132,6 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
 
   const Header = React.useCallback(
     function ({ program }: { program: Program }) {
-
       return (
         <>
           <YStack gap={20} paddingVertical={15}>
@@ -152,7 +151,7 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                   <MentorJobText>Experte en communication</MentorJobText>
                 </YStack>
               </XStack>
-              <XStack gap={5} >
+              <XStack gap={5}>
                 <HeartSvg />
                 <MiscText>{7.8}</MiscText>
               </XStack>
@@ -255,8 +254,8 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
               </YStack>
               {/* </RandomChildView> */}
 
-              <RandomChildView>
-                <>
+              {/*<RandomChildView>
+                * <>
                   <YStack
                     gap={15}
                     paddingVertical={20}
@@ -273,14 +272,18 @@ export const ProgramDetailScreen = React.memo(function (props: Props) {
                       ))}
                     </ScrollView>
                   </YStack>
-                </>
+                </> 
                 <>
                   <YStack gap={5} paddingVertical={20}>
                     <TabSectionTitle>Programmes similaires</TabSectionTitle>
                     <SimilarProgramsAlt1 />
                   </YStack>
                 </>
-              </RandomChildView>
+              </RandomChildView>*/}
+              <YStack gap={5} paddingVertical={20}>
+                <TabSectionTitle>Programmes similaires</TabSectionTitle>
+                <SimilarProgramsAlt1 />
+              </YStack>
             </YStack>
           </ScrollView>
         </ScrollAnchorProvider>

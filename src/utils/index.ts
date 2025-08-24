@@ -1,9 +1,9 @@
 import { Program } from "../../types";
 
-const cover1 = require("~/images/cover1.avif");
-const cover2 = require("~/images/cover2.avif");
-const cover3 = require("~/images/cover3.avif");
-const cover4 = require("~/images/cover3.avif");
+const cover1 = require("~/images/cover1.png");
+const cover2 = require("~/images/cover2.png");
+const cover3 = require("~/images/cover3.png");
+const cover4 = require("~/images/cover3.png");
 
 export const programs: Program[] = [
   {
